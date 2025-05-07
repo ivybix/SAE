@@ -11,7 +11,6 @@ public class Main {
 
         for (String s: e.getVille()) {
 //            System.out.println(s);
-//            hrthtr
         }
 
     }
