@@ -9,9 +9,7 @@ public class Main {
 //        System.out.println(e.getMembresVilles());
 
 
-        for (String s: e.getVille()) {
-//            System.out.println(s);
-        }
+        System.out.println(e.getVille());
 
     }
 }

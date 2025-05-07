@@ -16,7 +16,7 @@ public class Extraction {
         this.scenarios = new HashMap<>();
 
 
-        int Nscenario = 0;
+        Integer Nscenario = (Integer) 0;
 
         for (File f : Objects.requireNonNull(ressources.listFiles())) {
 
@@ -31,13 +31,13 @@ public class Extraction {
                         HashSet<Integer> distances = new HashSet<>();
 
                         for (String s : data.split(" ")) {
-                            try {
-                                int distance = Integer.parseInt(s);
-                                distances.add(distance);
-
-                            } catch (NumberFormatException e) {
-                                System.out.println("Valeur ignorée (non numérique) : " + s);
-                            }
+//                            try {
+//                                int distance = Integer.parseInt(s);
+////                                distances.add(distance);
+//
+//                            } catch (NumberFormatException e) {
+//                                System.out.println("Valeur ignorée (non numérique) : " + s);
+//                            }
                         }
                         cities.put(data.split(" ")[0], distances);
                     }
@@ -81,15 +81,19 @@ public class Extraction {
     public HashMap<String, String> getMembresVilles() {
         return membresVilles;
     }
-    public HashSet<String> getVille() {
-        HashSet<String> villes = new HashSet<>();
+    public List<String> getVille() {
+        List<String> villes = new ArrayList<>();
         for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
             String vendeur = entry.getKey();
             String acheteur = entry.getValue();
             String ville = this.getMembresVilles().get(vendeur);
             String ville2 = this.getMembresVilles().get(acheteur);
-            villes.add(ville + "->" + ville2);
 
+            // Affichage des paires de villes
+            System.out.println("print: " + ville + "->" + ville2);
+
+            // Ajout de la paire directement dans la liste
+            villes.add(ville + "=" + ville2);
         }
         return villes;
     }
