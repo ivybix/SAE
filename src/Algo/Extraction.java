@@ -81,22 +81,25 @@ public class Extraction {
     public HashMap<String, String> getMembresVilles() {
         return membresVilles;
     }
-    public List<String> getVille() {
-        List<String> villes = new ArrayList<>();
+
+
+    public Map<String, List<String>> getVille() {
+        Map<String, List<String>> villes = new LinkedHashMap<>();
         for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
             String vendeur = entry.getKey();
             String acheteur = entry.getValue();
             String ville = this.getMembresVilles().get(vendeur);
             String ville2 = this.getMembresVilles().get(acheteur);
 
-            // Affichage des paires de villes
             System.out.println("print: " + ville + "->" + ville2);
 
-            // Ajout de la paire directement dans la liste
-            villes.add(ville + "=" + ville2);
+            villes.putIfAbsent(ville, new ArrayList<>());
+
+            villes.get(ville).add(ville2);
         }
         return villes;
     }
+
 
 
 
