@@ -9,7 +9,7 @@ public class Main {
 //        System.out.println(e.getMembresVilles());
 
 
-        System.out.println(e.getVille());
+        e.distanceVilleToVille("Lyon", "Lyon");
 
     }
 }

@@ -8,41 +8,38 @@ import static java.lang.Integer.parseInt;
 
 public class Extraction {
     private final HashMap<Integer, HashMap<String, String>> scenarios;
-
+    private final TreeMap<String, ArrayList<Integer>> distanceVilles;
     private final HashMap<String, String> membresVilles;
     public Extraction() throws FileNotFoundException {
         File ressources = new File("src",File.separator+"Ressources");
         this.membresVilles = new HashMap<>();
         this.scenarios = new HashMap<>();
+        this.distanceVilles = new TreeMap<>();
 
 
-        Integer Nscenario = (Integer) 0;
+        int Nscenario = 0;
 
         for (File f : Objects.requireNonNull(ressources.listFiles())) {
 
             if (f.getName().equals("distances.txt")) {
                 Scanner lecteur = new Scanner(f);
-                String line;
-                HashMap<String, HashSet<Integer>> cities = new HashMap<>();
+                String line = "";
 
                 while (lecteur.hasNextLine()) {
                     String data = lecteur.nextLine();
                     if (!data.split(" ")[0].equals("")) {
-                        HashSet<Integer> distances = new HashSet<>();
+                        ArrayList<Integer> distances = new ArrayList<>();
 
                         for (String s : data.split(" ")) {
-//                            try {
-//                                int distance = Integer.parseInt(s);
-////                                distances.add(distance);
-//
-//                            } catch (NumberFormatException e) {
-//                                System.out.println("Valeur ignorée (non numérique) : " + s);
-//                            }
-                        }
-                        cities.put(data.split(" ")[0], distances);
-                    }
-                    System.out.println(cities);
+                            try {
+                                int distance = Integer.parseInt(s);
+                                distances.add(distance);
 
+                            } catch (NumberFormatException e) {
+                            }
+                        }
+                        distanceVilles.put(data.split(" ")[0], distances);
+                    }
                 }
                 lecteur.close();
             }
@@ -84,20 +81,23 @@ public class Extraction {
 
 
     public Map<String, List<String>> getVille() {
-        Map<String, List<String>> villes = new LinkedHashMap<>();
+        Map<String, List<String>> villes = new HashMap<>();
         for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
             String vendeur = entry.getKey();
             String acheteur = entry.getValue();
             String ville = this.getMembresVilles().get(vendeur);
             String ville2 = this.getMembresVilles().get(acheteur);
 
-            System.out.println("print: " + ville + "->" + ville2);
 
             villes.putIfAbsent(ville, new ArrayList<>());
 
             villes.get(ville).add(ville2);
         }
         return villes;
+    }
+    public int distanceVilleToVille(String villeDepart, String villeArriver) {
+        List<String> values = new ArrayList<>(distanceVilles.keySet());
+        return distanceVilles.get(villeDepart).get(values.indexOf(villeArriver));
     }
 
 
