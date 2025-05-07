@@ -23,7 +23,6 @@ public class Extraction {
             if (f.getName().equals("distances.txt")) {
                 Scanner lecteur = new Scanner(f);
                 TreeMap<String, ArrayList<Integer>> cities = new TreeMap<>();
-                String line = "";
 
                 while (lecteur.hasNextLine()) {
                     String data = lecteur.nextLine();
@@ -80,15 +79,20 @@ public class Extraction {
     public HashMap<String, String> getMembresVilles() {
         return membresVilles;
     }
-    public HashSet<String> getVille() {
-        HashSet<String> villes = new HashSet<>();
+
+    public Map<String, List<String>> getVille() {
+        Map<String, List<String>> villes = new LinkedHashMap<>();
         for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
             String vendeur = entry.getKey();
             String acheteur = entry.getValue();
             String ville = this.getMembresVilles().get(vendeur);
             String ville2 = this.getMembresVilles().get(acheteur);
-            villes.add(ville + "->" + ville2);
 
+//            System.out.println("print: " + ville + "->" + ville2);
+
+            villes.putIfAbsent(ville, new ArrayList<>());
+
+            villes.get(ville).add(ville2);
         }
         return villes;
     }

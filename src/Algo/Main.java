@@ -6,12 +6,6 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Extraction e = new Extraction();
-//        System.out.println(e.getMembresVilles());
-
-
-        for (String s: e.getVille()) {
-//            System.out.println(s);
-        }
-
+        System.out.println(e.getVille());
     }
 }
