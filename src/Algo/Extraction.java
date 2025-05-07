@@ -22,13 +22,13 @@ public class Extraction {
 
             if (f.getName().equals("distances.txt")) {
                 Scanner lecteur = new Scanner(f);
-                String line;
-                HashMap<String, HashSet<Integer>> cities = new HashMap<>();
+                TreeMap<String, ArrayList<Integer>> cities = new TreeMap<>();
+                String line = "";
 
                 while (lecteur.hasNextLine()) {
                     String data = lecteur.nextLine();
                     if (!data.split(" ")[0].equals("")) {
-                        HashSet<Integer> distances = new HashSet<>();
+                        ArrayList<Integer> distances = new ArrayList<>();
 
                         for (String s : data.split(" ")) {
                             try {
@@ -42,7 +42,6 @@ public class Extraction {
                         cities.put(data.split(" ")[0], distances);
                     }
                     System.out.println(cities);
-
                 }
                 lecteur.close();
             }
