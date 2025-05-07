@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
+
 public class Extraction {
     private final HashMap<Integer, HashMap<String, String>> scenarios;
 
@@ -17,6 +19,34 @@ public class Extraction {
         int Nscenario = 0;
 
         for (File f : Objects.requireNonNull(ressources.listFiles())) {
+
+            if (f.getName().equals("distances.txt")) {
+                Scanner lecteur = new Scanner(f);
+                String line;
+                HashMap<String, HashSet<Integer>> cities = new HashMap<>();
+
+                while (lecteur.hasNextLine()) {
+                    String data = lecteur.nextLine();
+                    if (!data.split(" ")[0].equals("")) {
+                        HashSet<Integer> distances = new HashSet<>();
+
+                        for (String s : data.split(" ")) {
+                            try {
+                                int distance = Integer.parseInt(s);
+                                distances.add(distance);
+
+                            } catch (NumberFormatException e) {
+                                System.out.println("Valeur ignorée (non numérique) : " + s);
+                            }
+                        }
+                        cities.put(data.split(" ")[0], distances);
+                    }
+                    System.out.println(cities);
+
+                }
+                lecteur.close();
+            }
+
             if (Objects.equals(f.getName().split("_")[0], "scenario")) {
 
                 Scanner lecteur = new Scanner(f);
@@ -59,10 +89,11 @@ public class Extraction {
             String ville = this.getMembresVilles().get(vendeur);
             String ville2 = this.getMembresVilles().get(acheteur);
             villes.add(ville + "->" + ville2);
-            System.out.println(villes);
 
         }
         return villes;
     }
+
+
 
 }
