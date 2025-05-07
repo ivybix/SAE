@@ -2,19 +2,16 @@ package Algo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Extraction {
-    private HashMap<String, String> echanges;
-    private HashMap<Integer, HashMap<String, String>> scenarios;
+    private final HashMap<Integer, HashMap<String, String>> scenarios;
 
-    private HashMap<String, String> membresVilles;
+    private final HashMap<String, String> membresVilles;
     public Extraction() throws FileNotFoundException {
         File ressources = new File("src",File.separator+"Ressources");
         this.membresVilles = new HashMap<>();
-        this.scenarios = new HashMap<Integer, HashMap<String, String>>();
+        this.scenarios = new HashMap<>();
 
 
         int Nscenario = 0;
@@ -23,7 +20,7 @@ public class Extraction {
             if (Objects.equals(f.getName().split("_")[0], "scenario")) {
 
                 Scanner lecteur = new Scanner(f);
-                this.echanges = new HashMap<>();
+                HashMap<String, String> echanges = new HashMap<>();
                 while (lecteur.hasNextLine()) {
                     String data = lecteur.nextLine();
                     echanges.put(data.split(" -> ")[0], data.split(" -> ")[1]);
@@ -54,6 +51,18 @@ public class Extraction {
     public HashMap<String, String> getMembresVilles() {
         return membresVilles;
     }
+    public HashSet<String> getVille() {
+        HashSet<String> villes = new HashSet<>();
+        for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
+            String vendeur = entry.getKey();
+            String acheteur = entry.getValue();
+            String ville = this.getMembresVilles().get(vendeur);
+            String ville2 = this.getMembresVilles().get(acheteur);
+            villes.add(ville + "->" + ville2);
+            System.out.println(villes);
 
+        }
+        return villes;
+    }
 
 }

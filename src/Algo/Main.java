@@ -1,17 +1,13 @@
 package Algo;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Extraction e = new Extraction();
 //        System.out.println(e.getMembresVilles());
-        System.out.println(e.getScenarios().get(0));
-
+        System.out.println(e.getVille());
 
 
 //        while (it.hasNext()) {
