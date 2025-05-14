@@ -80,7 +80,7 @@ public class Extraction {
     }
 
 
-    public Map<String, List<String>> getVille() {
+    public Map<String, List<String>> getVilles() {
         Map<String, List<String>> villes = new HashMap<>();
         for (Map.Entry<String, String> entry : this.getScenarios().get(0).entrySet()) {
             String vendeur = entry.getKey();
