@@ -23,7 +23,6 @@ public class Extraction {
 
             if (f.getName().equals("distances.txt")) {
                 Scanner lecteur = new Scanner(f);
-                String line = "";
 
                 while (lecteur.hasNextLine()) {
                     String data = lecteur.nextLine();
@@ -64,12 +63,8 @@ public class Extraction {
                     membresVilles.put(data.split(" ")[0], data.split(" ")[1]);
                 }
                 lecteur.close();
-
-
             }
-
         }
-
     }
 
     public HashMap<Integer, HashMap<String, String>> getScenarios() {
