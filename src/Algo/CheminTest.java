@@ -8,14 +8,14 @@ public class CheminTest {
     private final List<String> sommets;
     private final List<Commande> commandes;
 
-    public CheminTest() throws FileNotFoundException {
+    public CheminTest(int scenarioChoisi) throws FileNotFoundException {
         extraction = new Extraction();
         sommets = new ArrayList<>();
         sommets.add("Velizy");
         sommets.addAll(extraction.getVilles().keySet());
 
         commandes = new ArrayList<>();
-        for (Map.Entry<String, String> entry : extraction.getScenarios().get(0).entrySet()) {
+        for (Map.Entry<String, String> entry : extraction.getScenarios().get(scenarioChoisi).entrySet()) {
             String vendeur = extraction.getMembresVilles().get(entry.getKey());
             String acheteur = extraction.getMembresVilles().get(entry.getValue());
             commandes.add(new Commande(vendeur, acheteur));
@@ -59,7 +59,7 @@ public class CheminTest {
                 }
             }
 
-            if (prochaineVille == null) break; // sécurité
+            if (prochaineVille == null) break;
             villeActuelle = prochaineVille;
             parcours.add(villeActuelle);
 
@@ -73,8 +73,17 @@ public class CheminTest {
         }
 
         if (!villeActuelle.equals("Velizy")) parcours.add("Velizy");
-
         return parcours;
+    }
+
+    public int calculDistance(List<String> parcours) {
+        int distance = 0;
+        for (int i = 0; i < parcours.size() - 1; i++) {
+            String from = parcours.get(i);
+            String to = parcours.get(i + 1);
+            distance += extraction.distanceVilleToVille(from, to);
+        }
+        return distance;
     }
 
     public List<Commande> getCommandes() {
