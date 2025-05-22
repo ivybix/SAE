@@ -16,6 +16,7 @@ public class Root extends Application {
         root.setSpacing(10);
         stage.setScene(scene);
         stage.show();
+        // test
     }
     public static void main(String[] args) {
         Application.launch();
