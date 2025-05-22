@@ -22,7 +22,7 @@ public class Main {
             System.out.println("=== SCÉNARIO " + i + " ===");
             try {
                 CheminTest chemin = new CheminTest(4);
-                var commandes = chemin.getCommandes();
+                List<CheminTest.Commande> commandes = chemin.getCommandes();
 
                 if (commandes.isEmpty()) {
                     System.out.println("Aucune commande trouvée dans ce scénario. Fichier vide ou mal formaté ?\n");
@@ -35,7 +35,7 @@ public class Main {
                 }
                 System.out.println(chemin.parcoursGlouton());
 
-                var parcours = chemin.parcoursGlouton();
+                List<String> parcours = chemin.parcoursGlouton();
                 System.out.print("Parcours : ");
                 for (String ville : parcours) {
                     System.out.print(ville + " -> ");
