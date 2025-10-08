@@ -4447,9 +4447,9 @@ select.uk-form-width-xsmall {
 /*
  * Pass fill character to JS
  */
-:root {
-  --uk-leader-fill-content: .;
-}
+/*:root {*/
+/*  --uk-leader-fill-content: .;*/
+/*}*/
 /* ========================================================================
    Component: Notification
  ========================================================================== */
