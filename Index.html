@@ -4,10 +4,76 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="public/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="public/uikit.min.css" />
-    <title>Nom</title>
+
+    <link rel="icon" type="image/x-icon" href="/public/logo.ico"/>
+    <link rel="stylesheet" href="public/uikit.css" />
+    <link rel="stylesheet" href="public/uikit-rtl.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.24.1/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.1/dist/js/uikit-icons.min.js"></script>
+    <title>TechToc</title>
 </head>
 <body>
-<p class="sansation-bold">test</p>
+<nav class="uk-navbar-container uk-align-center">
+    <div class="uk-container">
+        <div uk-navbar>
+
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+                <a class="uk-navbar-item uk-logo logo-background" href="#"    aria-label="Acceuil" >
+
+
+                </a>
+                    <li>
+                        <a href="#">
+                            <span class="uk-icon uk-margin-xsmall-right" uk-icon="icon: user"></span>
+                            connexion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="uk-icon uk-margin-xsmall-right" uk-icon="icon: cog "></span>
+                            Réglages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="uk-icon uk-margin-xsmall-right" uk-icon="icon: album "></span>
+                            Inventaire
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="uk-navbar-center-right">
+                        <button class="uk-button uk-button-default">Déconnexion</button>
+                        </div>
+                </div>
+
+            </div>
+
+    </div>
+</nav>
+<div class="uk-align-center">
+<article class="uk-article uk-text-center">
+    <h1 class="sansation-bold">Comment notre platforme fonctionne ?</h1>
+
+    <p class="uk-text-lead sansation-light"  >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis est illum incidunt, ipsum iste natus nobis odit officiis praesentium provident reprehenderit, saepe, sunt! Atque cupiditate, doloribus ducimus qui sequi vel.</p>
+</article>
+</div>
+<div class="uk-container uk-align-center">
+    <article class="uk-article uk-text-center">
+    <h1 class="sansation-bold">Vidéo explicative:</h1>
+    </article>
+</div>
+<div class="uk-container uk-align-center">
+    <div class="uk-text-center">
+        <video src="https://static.vecteezy.com/system/resources/previews/001/623/757/mp4/loading-progress-bar-free-video.mp4" width="480" height="360" controls preload="none" hidden uk-video></video>
+        <a href uk-toggle="target: ! > *" class="uk-inline">
+            <img src="public/logo.ico" width="480" height="360" alt="">
+            <span class="uk-position-center uk-icon-overlay" uk-icon="icon: youtube; ratio: 3"></span>
+        </a>
+    </div>
+</div>
 </body>
 </html>

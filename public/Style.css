@@ -35,3 +35,24 @@
     font-weight: 700;
     font-style: italic;
 }
+.logo-background {
+
+    background-image: url('logo.ico');
+
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-size: contain;
+
+
+    padding: 10px 20px;
+    width: 120px;
+    text-align: center;
+}
+
+.logo-background .uk-logo {
+    opacity: 1;
+}
+video {
+    align-items: center;
+}

@@ -7,6 +7,13 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  * 3. Style
  */
+
+@global-color: #666;
+@global-emphasis-color: #333;
+@global-muted-color: #999;
+
+@global-muted-background: #f8f8f8;
+
 html {
   /* 1 */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
