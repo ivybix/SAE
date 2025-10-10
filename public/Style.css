@@ -4,43 +4,44 @@
     font-family: "Sansation", sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #F2E5D5;
+    color: #F2E5D5 !important;
 }
 
 .sansation-regular {
     font-family: "Sansation", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color:  #F2E5D5;
+    color:  #F2E5D5 !important;
 }
 
 .sansation-bold {
     font-family: "Sansation", sans-serif;
     font-weight: 700;
     font-style: normal;
-    color:  #F2E5D5;
+    color:  #F2E5D5 !important;
 }
 
 .sansation-light-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 300;
     font-style: italic;
-    color:  #F2E5D5;
+    color:  #F2E5D5 !important;
 }
 
 .sansation-regular-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 400;
     font-style: italic;
-    color:  #F2E5D5;
+    color:  #F2E5D5 !important;
 }
 
 .sansation-bold-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 700;
     font-style: italic;
-    color:  #F2E5D5;
+    color:  #F2E5D5 !important;
 }
+
 .logo-background {
 
     background-image: url('logo.ico');
@@ -64,9 +65,5 @@ video {
 
 body, div {
     background: #012E40;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-    color: #F2E5D5;
 }
 
