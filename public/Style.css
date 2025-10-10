@@ -4,36 +4,42 @@
     font-family: "Sansation", sans-serif;
     font-weight: 300;
     font-style: normal;
+    color: #F2E5D5;
 }
 
 .sansation-regular {
     font-family: "Sansation", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color:  #F2E5D5;
 }
 
 .sansation-bold {
     font-family: "Sansation", sans-serif;
     font-weight: 700;
     font-style: normal;
+    color:  #F2E5D5;
 }
 
 .sansation-light-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 300;
     font-style: italic;
+    color:  #F2E5D5;
 }
 
 .sansation-regular-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 400;
     font-style: italic;
+    color:  #F2E5D5;
 }
 
 .sansation-bold-italic {
     font-family: "Sansation", sans-serif;
     font-weight: 700;
     font-style: italic;
+    color:  #F2E5D5;
 }
 .logo-background {
 
@@ -43,7 +49,6 @@
     background-repeat: no-repeat;
 
     background-size: contain;
-
 
     padding: 10px 20px;
     width: 120px;
@@ -56,3 +61,12 @@
 video {
     align-items: center;
 }
+
+body, div {
+    background: #012E40;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: #F2E5D5;
+}
+
