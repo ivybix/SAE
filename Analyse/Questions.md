@@ -32,7 +32,7 @@
 
 - **La configuration complète du serveur web (Apache) et du SGBD (MySQL) est-elle fournie, ou devons-nous tout installer et configurer nous-mêmes ?**
 
-- ** Quelle est la durée cible pour la vidéo explicative.**
+- **Quelle est la durée cible pour la vidéo explicative.**
 
 
 
@@ -42,6 +42,7 @@
 
 ## 5. Support technique
 - **Si nous rencontrons des problèmes avec les Raspberry Pi ou le réseau, quel est le canal officiel pour demander de l’aide ou signaler un incident ?**
+
 
 
 
