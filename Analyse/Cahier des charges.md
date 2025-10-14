@@ -54,33 +54,6 @@ Deux fichiers de données au format CSV seront fournis :
 
 ---
 
-### Pré-requis
-
-#### Environnement matériel  
-Le projet doit être hébergé sur un **Raspberry Pi 4**.  
-Chaque groupe devra préparer une carte SD contenant :  
-- le système d’exploitation,  
-- un serveur web (Apache par exemple),  
-- un serveur SQL (MySQL ou équivalent),  
-- les outils de sécurisation SSH nécessaires.  
-
-L’accès SSH doit être activé avec les identifiants suivants :  
-- **Login** : `sae2025`  
-- **Mot de passe** : `!sae2025!`  
-
-Ces paramètres sont imposés et ne doivent pas être modifiés.  
-
-#### Environnement logiciel  
-Les technologies attendues sont :  
-- **Langages** : PHP, HTML, CSS, JavaScript, SQL,  
-- **Serveur web** : Apache ou Nginx,  
-- **Base de données** : MySQL ou MariaDB,  
-- **Système** : Linux (Debian/Raspberry Pi OS recommandé).  
-
-Chaque groupe devra également utiliser un dépôt GitHub ou GitLab partagé avec les enseignants pour héberger le code source, la documentation et les livrables.  
-
----
-
 ### Priorités et livrables selon les cours  
 
 #### Développement Web (R301)  
@@ -107,6 +80,7 @@ Préparation d’un exposé oral en anglais sur le projet.
 
 #### Management et Droit (R310/R311)  
 Gestion de projet, respect du cadre légal et des droits numériques.  
+
 
 
 
