@@ -1,7 +1,7 @@
 # Cahier des charges – SAE3 2025
 ## Plateforme Web de gestion de parc informatique
 
-### 🧭 Introduction  
+### Introduction  
 Dans le cadre des semestres 3 et 4 du BUT Informatique, les étudiants doivent concevoir et déployer une application web de gestion de parc informatique.  
 Ce projet, intitulé **SAE3 – Plateforme Web**, a pour objectif de mettre en œuvre une solution complète de gestion de parc informatique tout en mobilisant les différentes compétences acquises au cours du semestre.  
 
@@ -10,7 +10,7 @@ L’ensemble du projet sera évalué à la fois sur les aspects techniques, orga
 
 ---
 
-### 📜 Énoncé du projet  
+### Énoncé du projet  
 
 #### Objectif général  
 Le bout du projet est de développer une **plateforme web en PHP & MySQL** (ou tout autre système SQL compatible) permettant la **gestion d’un parc informatique**.  
@@ -54,7 +54,7 @@ Deux fichiers de données au format CSV seront fournis :
 
 ---
 
-### ⚙️ Pré-requis techniques  
+### Pré-requis techniques  
 
 #### Environnement matériel  
 Le projet doit être hébergé sur un **Raspberry Pi 4**.  
@@ -81,7 +81,7 @@ Chaque groupe devra également utiliser un dépôt GitHub ou GitLab partagé ave
 
 ---
 
-### 🎯 Priorités et livrables selon les cours  
+### Priorités et livrables selon les cours  
 
 #### Développement Web (R301)  
 Création de l’interface web statique, navigation fictive, et intégration progressive du back-end.  
@@ -108,38 +108,6 @@ Préparation d’un exposé oral en anglais sur le projet.
 #### Management et Droit (R310/R311)  
 Gestion de projet, respect du cadre légal et des droits numériques.  
 
----
 
-### 📅 Échéances et livrables  
 
-| Livrable | Description | Échéance indicative |
-|-----------|--------------|--------------------|
-| Cahier des charges | Version finale après étude du sujet | Octobre |
-| Maquette HTML | Prototype statique avec navigation | Début novembre |
-| Dossier de conception | Schémas UML, MCD, MLD | Fin novembre |
-| Déploiement sur RPi | Application fonctionnelle hébergée | Décembre |
-| Documentation | Technique + utilisateur | Avant soutenance |
-| Soutenance S3 | Présentation du travail réalisé | Fin semestre 3 |
-| Poursuite S4 | Finalisation et extension du projet | Semestre 4 |
 
----
-
-### ⚠️ Contraintes et règles  
-
-Le respect des identifiants imposés est obligatoire.  
-Toute tentative d’accès non autorisé à un autre Raspberry Pi sera sanctionnée.  
-Les livrables doivent être remis dans les délais fixés, sous peine de pénalité.  
-
-L’évaluation globale du semestre se décompose comme suit :  
-- 60 % : ressources (modules du semestre),  
-- 40 % : SAE (travail sur le projet).  
-
----
-
-### 🧩 Remarques finales  
-Le projet s’étend sur deux semestres. Une soutenance intermédiaire aura lieu à la fin du semestre 3 et le projet sera finalisé au semestre 4.  
-
-Les échanges réguliers par e-mail avec les enseignants sont fortement encouragés.  
-L’usage d’outils d’intelligence artificielle est toléré à titre d’assistance, mais chaque étudiant devra être capable d’expliquer son travail individuellement.  
-
----
