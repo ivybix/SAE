@@ -47,7 +47,7 @@ Les EF décrivent ce que le système doit faire. Elles sont identifiées pour ga
 
 | ID | Exigence | Pré-Condition (Clé) | Critère de Validation |
 | :--- | :--- | :--- | :--- |
-| **EF-1.1** | Le Technicien doit pouvoir **consulter et modifier** les informations d'un matériel dans le parc. | L'utilisateur est authentifié. | La modification est enregistrée en BDD et visible immédiatement. Un log est généré. |
+| **EF-1.1** | Le Technicien doit pouvoir **consulter et modifier** les informations d'un matériel dans le parc. | L'utilisateur est authentifié. La machine existe dans l'inventaire actif. | La modification est enregistrée en BDD et visible immédiatement. Un log est généré. |
 | **EF-1.2** | Le système doit permettre l'**ajout d'une seule machine** via un formulaire structuré. | L'utilisateur est authentifié. | Le formulaire doit contrôler le format des données entrées (séries, dates). |
 | **EF-1.3** | Le système doit permettre l'**ajout d'une série de machines** via un fichier CSV. | L'utilisateur est authentifié. Le fichier CSV doit respecter les en-têtes et le format requis. | Le système doit gérer les erreurs de formatage ou les doublons lors de l'import CSV. |
 | **EF-1.4** | Le Technicien doit pouvoir **supprimer une machine** pour la placer dans la **liste du rebut**. | L'utilisateur est authentifié. La machine existe dans l'inventaire actif. | La machine est transférée dans la liste Rebut, elle n'est plus visible dans l'inventaire actif. |
@@ -132,4 +132,5 @@ Le cas d'utilisation cité ci-dessous sont au niveau **Utilisateur**, ce qui rep
 | **2.3** | Finaliser la Liste du Rebut | Consulter le rebut et **bloquer la liste** en vue d'une exportation administrative future. | Admin Web |  Utilisateur |
 | **3.1** | Consulter les Journaux d'Activités (Logs) | Accéder et parcourir les différents journaux d'activités de la plateforme. | Admin Système |  Utilisateur |
 | **3.2** | Authentification du Sysadmin | Se connecter pour accéder à l'interface de consultation des logs. | Admin Système | Sous-fonction |
+
 
