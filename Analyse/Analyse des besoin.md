@@ -113,9 +113,9 @@ Les EF décrivent ce que le système doit faire. Elles sont identifiées pour ga
 
 Ces scénarios décrivent les actions clés réalisées par les différents utilisateurs sur la plateforme, organisées par rôle.
 
-### Niveaux d'Objectif des Cas d'Utilisation
+### Niveaux des Cas d'Utilisation
 
-Tous les CU listés ci-dessous sont au niveau **Objectif Utilisateur** (ou "niveau de la mer"), ce qui représente une tâche complète et mesurable pour l'acteur.
+Le cas d'utilisation cité ci-dessous sont au niveau **Utilisateur**, ce qui représente une tâche complète et mesurable pour l'acteur. (temps de prendre un café)
 
 | ID | Tâche d'Utilisation Simplifiée | Objectif | Acteurs Primaires | Niveau |
 | :--- | :--- | :--- | :--- | :--- |
@@ -132,3 +132,4 @@ Tous les CU listés ci-dessous sont au niveau **Objectif Utilisateur** (ou "nive
 | **2.3** | Finaliser la Liste du Rebut | Consulter le rebut et **bloquer la liste** en vue d'une exportation administrative future. | Admin Web |  Utilisateur |
 | **3.1** | Consulter les Journaux d'Activités (Logs) | Accéder et parcourir les différents journaux d'activités de la plateforme. | Admin Système |  Utilisateur |
 | **3.2** | Authentification du Sysadmin | Se connecter pour accéder à l'interface de consultation des logs. | Admin Système | Sous-fonction |
+
