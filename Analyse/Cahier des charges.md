@@ -62,6 +62,13 @@ Création de l’interface web statique, navigation fictive, et intégration pro
 #### Analyse (R303)  
 Rédaction du présent cahier des charges et modélisation des données (MCD/MLD).  
 
+#### Communication professionnelle et Anglais (R312/R313)  
+Création d’un logo et justification du choix.  
+Préparation d’un exposé oral en anglais sur le projet.
+
+#### Management et Droit (R310/R311)  
+Gestion de projet, respect du cadre légal et des droits numériques.
+
 #### Qualité de développement (R304)  
 Mise en place d’une documentation claire et respect des conventions de code.  
 
@@ -72,14 +79,8 @@ Installation du serveur web sur le Raspberry Pi et configuration réseau/SSH.
 Implémentation des requêtes SQL pour la gestion du parc informatique.  
 
 #### Cryptographie et Sécurité (R309)  
-Sécurisation des sessions, des mots de passe et des accès.  
+Sécurisation des sessions, des mots de passe et des accès.      
 
-#### Communication professionnelle et Anglais (R312/R313)  
-Création d’un logo et justification du choix.  
-Préparation d’un exposé oral en anglais sur le projet.  
-
-#### Management et Droit (R310/R311)  
-Gestion de projet, respect du cadre légal et des droits numériques.  
 
 
 
