@@ -54,7 +54,7 @@ Deux fichiers de données au format CSV seront fournis :
 
 ---
 
-### Priorités et livrables selon les cours  
+### Priorités et livrables selon
 
 #### Développement Web (R301)  
 Création de l’interface web statique, navigation fictive, et intégration progressive du back-end.  
@@ -80,6 +80,7 @@ Préparation d’un exposé oral en anglais sur le projet.
 
 #### Management et Droit (R310/R311)  
 Gestion de projet, respect du cadre légal et des droits numériques.  
+
 
 
 
