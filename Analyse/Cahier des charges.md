@@ -56,11 +56,11 @@ Deux fichiers de données au format CSV seront fournis :
 
 ### Priorités des livrables
 
+#### Analyse (R303)  
+Rédaction du présent cahier des charges.  
+
 #### Développement Web (R301)  
 Création de l’interface web statique, navigation fictive, et intégration progressive du back-end.  
-
-#### Analyse (R303)  
-Rédaction du présent cahier des charges et modélisation des données (MCD/MLD).  
 
 #### Communication professionnelle et Anglais (R312/R313)  
 Création d’un logo et justification du choix.  
@@ -80,6 +80,7 @@ Implémentation des requêtes SQL pour la gestion du parc informatique.
 
 #### Cryptographie et Sécurité (R309)  
 Sécurisation des sessions, des mots de passe et des accès.      
+
 
 
 
