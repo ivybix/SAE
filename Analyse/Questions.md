@@ -8,14 +8,14 @@
 | Site Web     | Administrateur Système | Consulter les différents journaux d'activités de la plateforme |
 
 
-# Questions pour clarification du projet Plateforme WEB
+# Questions pour clarifier le projet WEB
 
 ## 1. Détails sur la structure du projet
 - **Est-ce que les rôles des utilisateurs (administrateur système, administrateur web, technicien, visiteur) sont définis dès le début, ou évolueront-ils au fil du projet ?**
   
-- **Quels champs spécifique doit être utilisé comme critère de recherche principal.**
+- **Quels champs spécifique doivent être utilisé comme critère de recherche principal ?**
 
- - **Faut-il prévoir une fonctionnalité permettant à l'admin Web de consulter ou de réinitialiser le mot de passe des techniciens qu'il crée?**
+ - **Faut-il prévoir une fonctionnalité permettant à l'administrateur Web de consulter ou de réinitialiser le mot de passe des techniciens qu'il crée ?**
 
 ## 2. Gestion des utilisateurs
 - **L’administrateur web peut-il gérer uniquement les techniciens, ou aussi d’autres administrateurs web ?**  
@@ -32,7 +32,7 @@
 
 - **La configuration complète du serveur web (Apache) et du SGBD (MySQL) est-elle fournie, ou devons-nous tout installer et configurer nous-mêmes ?**
 
-- **Quelle est la durée cible pour la vidéo explicative.**
+- **Quelle est la durée ciblée pour la vidéo explicative ?**
 
 
 
@@ -42,6 +42,7 @@
 
 ## 5. Support technique
 - **Si nous rencontrons des problèmes avec les Raspberry Pi ou le réseau, quel est le canal officiel pour demander de l’aide ou signaler un incident ?**
+
 
 
 
