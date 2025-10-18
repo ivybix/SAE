@@ -2,16 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="public/Style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="/public/logo.ico"/>
-    <link rel="stylesheet" href="public/uikit.css"/>
-    <link rel="stylesheet" href="public/uikit-rtl.css"/>
 
-    <title>InkWare</title>
+    <link rel="stylesheet" href="public/Style.css">
+    <link rel="stylesheet" href="public/uikit.css" />
+    <link rel="stylesheet" href="public/uikit-rtl.css" />
+
+    <title>Connexion InkWare</title>
 </head>
 <body>
+
 <nav class="uk-navbar-container uk-navbar-transparent uk-align-center">
     <div class="uk-container">
         <div class="uk-navbar">
@@ -58,29 +59,35 @@
 
     </div>
 </nav>
-<div class="uk-align-center">
-    <article class="uk-article uk-text-center">
-        <h1 class="sansation-bold">Comment notre platforme fonctionne ?</h1>
+<div class="uk-container uk-margin-large-top uk-text-center">
+    <article class="uk-article">
+        <h1 class="sansation-bold">Connexion</h1>
+        <p class="sansation-regular-italic">Connectez-vous pour accéder à votre espace.</p>
 
-        <p class="uk-text-lead sansation-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis est
-            illum incidunt, ipsum iste natus nobis odit officiis praesentium provident reprehenderit, saepe, sunt! Atque
-            cupiditate, doloribus ducimus qui sequi vel.</p>
+        <form id="loginForm" class="uk-form-stacked uk-width-1-3@s uk-align-center uk-box-shadow-small uk-padding-small  uk-border-rounded">
+
+            <div class="uk-margin">
+                <label class="uk-form-label sansation-regular" for="username">Identifiant :</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="username" type="text" required>
+                </div>
+            </div>
+
+            <div class="uk-margin">
+                <label class="uk-form-label sansation-regular" for="password">Mot de passe :</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="password" type="password" required>
+                </div>
+            </div>
+
+            <button id="boutonEnvoyer" class="uk-button uk-button-primary" type="submit">Se connecter</button>
+        </form>
+
+
     </article>
 </div>
-<div class="uk-container uk-align-center">
-    <article class="uk-article uk-text-center">
-        <h1 class="sansation-bold">Vidéo explicative:</h1>
-    </article>
-</div>
-<div class="uk-container uk-align-center">
-    <div class="uk-text-center">
-        <video src="https://static.vecteezy.com/system/resources/previews/001/623/757/mp4/loading-progress-bar-free-video.mp4"
-               width="480" height="360" controls preload="none" uk-video></video>
 
-    </div>
-</div>
+
+
 </body>
-<footer>
-
-</footer>
 </html>
