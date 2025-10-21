@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6, p , label {
     color: #777;
     text-decoration: none;
     transition: all 0.45s;
-    letter-spacing: 1.1px;
+    letter-spacing: 1px;
 }
 
 
@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6, p , label {
         background-position-y: -10px;
     }
     100% {
-        background-position-x: 0px;
+        background-position-x: 0;
         background-position-y: -10px;
     }
 }
