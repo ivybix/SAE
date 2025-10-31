@@ -125,7 +125,7 @@ Ce catalogue intègre le Scénario Nominal, les Scénarios Alternatifs (chemin d
 | :--- | :--- |
 | **Nom :** | Ouvrir une Session |
 | **Contexte d'utilisation :** | L'utilisateur fournit ses identifiants pour se connecter aux zones sécurisées de la plateforme. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Sous-fonction** |
 | **Acteur principal :** | Tous (sauf Visiteur) |
 | **Pré-condition :** | L'utilisateur est sur la page de connexion et possède des identifiants valides. |
@@ -155,7 +155,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Consulter et Rechercher l'Inventaire |
 | **Contexte d'utilisation :** | L'Acteur (Technicien ou Visiteur) visualise la liste du matériel actif (Unités Centrales et Moniteurs). |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien, Visiteur |
 | **Pré-condition :** | L'Acteur a un accès autorisé. |
@@ -185,7 +185,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Enregistrer une Machine dans l'Inventaire (via Formulaire) |
 | **Contexte d'utilisation :** | Le Technicien ajoute un seul nouvel équipement (UC ou Moniteur) à l'inventaire actif. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. Les listes de référence (OS, Constructeurs) sont configurées. |
@@ -218,7 +218,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Importer une Série de Machines (via Fichier CSV) |
 | **Contexte d'utilisation :** | Le Technicien ajoute un lot de matériel à l'inventaire en téléchargeant un fichier CSV formaté. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. Le fichier CSV est formaté avec les en-têtes requis. |
@@ -249,7 +249,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Modifier les Détails d'une Machine |
 | **Contexte d'utilisation :** | Le Technicien met à jour les informations d'une machine existante (localisation, OS, RAM, etc.). |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine est localisée dans l'inventaire actif. |
@@ -281,7 +281,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Déclarer un Matériel "Rebut" |
 | **Contexte d'utilisation :** | Le Technicien met une machine hors service et la transfère de l'inventaire principal à la liste du rebut. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine existe dans l'inventaire principal. |
@@ -313,7 +313,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Gérer le Statut du Rebut (Remise en Service) |
 | **Contexte d'utilisation :** | Le Technicien consulte la liste du rebut et peut changer le statut d'une machine pour la remettre en service. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine est dans la liste du rebut. La liste du rebut n'est pas "finalisée" par l'Admin Web. |
@@ -344,7 +344,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Exporter l'Inventaire ou le Rebut au format CSV |
 | **Contexte d'utilisation :** | Le Technicien télécharge les données complètes de l'inventaire ou du rebut dans un fichier CSV. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. |
@@ -374,7 +374,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Gérer les Comptes Techniciens (Création/Suppression) |
 | **Contexte d'utilisation :** | L'Admin Web crée ou supprime des comptes pour les Techniciens. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Administrateur Web |
 | **Pré-condition :** | L'Admin Web est authentifié (via `adminweb`). |
@@ -405,7 +405,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | :--- | :--- |
 | **Nom :** | Consulter les Journaux d'Activités (Logs) |
 | **Contexte d'utilisation :** | L'Admin Système accède aux logs générés par la plateforme pour assurer l'audit et le diagnostic. |
-| **Portée :** | **Système Boîte Noire** |
+| **Portée :** | **Boîte Noire** |
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Administrateur Système |
 | **Pré-condition :** | L'Admin Système est authentifié (via `sysadmin`). Les logs existent. |
@@ -426,3 +426,4 @@ Aucun scénario alternatif significatif à ce niveau.
 #### Scénarios d'Exception
 
 * **E1 : Aucun Log Trouvé** : Si les critères de filtrage de l'Admin Système ne renvoient aucun résultat, le Système affiche un message l'indiquant.
+
