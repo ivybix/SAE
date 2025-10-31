@@ -189,7 +189,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. Les listes de référence (OS, Constructeurs) sont configurées. |
-| **Garanties minimales :** | Les machines ajoutées reçoivent un statut "Actif" par défaut. |
+| **Garanties minimales :** | Les autres machines ne sont pas modifier. |
 | **Garanties en cas de succès :** | Le nouvel équipement est enregistré dans l'inventaire principal et l'action est loguée. |
 
 #### Scénario Nominal
@@ -222,7 +222,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. Le fichier CSV est formaté avec les en-têtes requis. |
-| **Garanties minimales :** | Les enregistrements avec un `SERIAL` existant ou un format invalide sont rejetés sans interrompre l'importation. |
+| **Garanties minimales :** | L'inventaire avant l'import est remis |
 | **Garanties en cas de succès :** | Toutes les machines valides du fichier sont ajoutées à l'inventaire. Un rapport d'importation est généré. |
 
 #### Scénario Nominal
@@ -253,7 +253,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine est localisée dans l'inventaire actif. |
-| **Garanties minimales :** | Seul le Technicien peut modifier les informations techniques. |
+| **Garanties minimales :** | Les modifications apportées ne sont pas appliquées et les anciennes informations sont remises. |
 | **Garanties en cas de succès :** | Les données de la machine sont mises à jour dans la base et la modification est tracée. |
 
 #### Scénario Nominal
@@ -285,7 +285,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine existe dans l'inventaire principal. |
-| **Garanties minimales :** | La machine est retirée de la liste active des machines. |
+| **Garanties minimales :** | La machine n'est pas mis dans la liste des rébuts et reste dans l'inventaire. |
 | **Garanties en cas de succès :** | La machine est transférée dans la liste du rebut et l'action est loguée. |
 
 #### Scénario Nominal
@@ -317,7 +317,7 @@ Aucun scénario alternatif significatif à ce niveau.
 | **Niveau :** | **Objectif Utilisateur** |
 | **Acteur principal :** | Technicien |
 | **Pré-condition :** | Le Technicien est authentifié. La machine est dans la liste du rebut. La liste du rebut n'est pas "finalisée" par l'Admin Web. |
-| **Garanties minimales :** | Le statut est modifié de manière sécurisée. |
+| **Garanties minimales :** | Le statut n'est pas modifié. |
 | **Garanties en cas de succès :** | La machine est retirée du rebut et réintégrée dans l'inventaire actif. |
 
 #### Scénario Nominal
@@ -426,4 +426,5 @@ Aucun scénario alternatif significatif à ce niveau.
 #### Scénarios d'Exception
 
 * **E1 : Aucun Log Trouvé** : Si les critères de filtrage de l'Admin Système ne renvoient aucun résultat, le Système affiche un message l'indiquant.
+
 
