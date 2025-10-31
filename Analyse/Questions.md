@@ -12,13 +12,13 @@
 
 1. La plateforme doit-elle être accessible uniquement sur le réseau local (intranet via le RPi) ou aussi depuis l’extérieur ?
 
-2. Les mots de passe des comptes (adminweb, sysadmin, tech1) doivent-ils être hachés dans la base de données ou laissés en clair pour simplifier l’évaluation ?
+2. Les mots de passe des comptes (adminweb, sysadmin, tech1) doivent-ils être hachés dans la base de données ou laissés en clair ?
 
 3. Le visiteur accède-t-il à la plateforme sans authentification ou via un compte invité ?
 
 4. Les rôles utilisateurs doivent-ils être gérés dynamiquement en base ou codés directement dans le code PHP ?
 
-5. Le technicien par défaut (tech1) doit-il être créé automatiquement dans la base au lancement de l’application ?
+5. Le technicien par défaut (tech1) doit-il être créé automatiquement dans la base de données au lancement de l’application ?
 
 6. Lors de l’import d’un fichier CSV, que faire en cas de doublon de numéro de série (remplacer, ignorer, ou signaler l’erreur) ?
 
@@ -43,35 +43,36 @@
 
 # Réponses
 
-1. fdede
+1. Les applications web seront toutes installées sur un serveur porté par un RPi4 qui sera disponible en connexion ssh depuis les postes des salles machines.
 
-2. defefe
+2. Les mots de passes doivent être hachés dans la base de données.
 
-3. fefeeded
+3. L'utilisateur peut consulter une partie de l'inventaire sans se connecter.
 
-4. fefededef
+4. Libre choix.
 
-5. fededede
+5. Un technicien devra être présent dans la base dès le début, son login sera tech1 et son mot de passe *tech1*.
 
-6. deded
+6. Libre choix.
 
-7. dede
+7. Libre choix.
 
-8. dedede
+8. Si le matériel est remis en service, il doit figurer à nouveau dans la liste des machines en fonctionnement.
 
-9. dede
+9. Oui, car si la liste de rebut est bloquée c'est qu'une décision administrative permet de se séparer du matériel en question.
 
-10. dede
+10. Libre choix.
 
-11. dee
+11. Libre choix.
 
-12. dede
+12. Le technicien n'a pas besoin de validation. Il faut identifier les champs précis qui sont modifiables (nom du matériel, état, etc) et dans quelles situations il doit modifier les données.
 
-13. de
+13. Oui, car il ne fait pas partie du staff technique, il se moque complètement de l'inventaire.
 
-14. dede
+14. Oui.
 
-15. ddedede
+15. 2mn max.
+
 
 
 
