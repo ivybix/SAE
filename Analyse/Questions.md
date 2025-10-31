@@ -41,6 +41,37 @@
 15. Quelle est la durée ciblée pour la vidéo explicative ?
 
 
+# Réponses
+
+1. fdede
+
+2. defefe
+
+3. fefeeded
+
+4. fefededef
+
+5. fededede
+
+6. deded
+
+7. dede
+
+8. dedede
+
+9. dede
+
+10. dede
+
+11. dee
+
+12. dede
+
+13. de
+
+14. dede
+
+15. ddedede
 
 
 
