@@ -21,7 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($user == "technicien") {
                 header("Location: technicien.html");
-            } else {
+            }
+            else if ($user == "admin_system") {
+                header("Location: adminsystem.html");
+            }
+            else if ($user == "admin_web") {
+                header("Location: adminweb.html");
+            }else {
                 header("Location: index.html");
             }
             exit;
