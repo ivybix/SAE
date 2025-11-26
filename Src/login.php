@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = mysqli_connect("localhost", "root", "", "Parc_informatique");
+$conn = mysqli_connect("localhost", "inkware", "!sae2025!", "Parc_informatique");
 
 if (!$conn) {
     die("Connexion échouée : " . mysqli_connect_error());
