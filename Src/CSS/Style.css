@@ -6,7 +6,12 @@
     font-style: normal;
     color: #F2E5D5 !important;
 }
+.uk-card-default {
 
+    background-color: #01394F!important;
+    color: #666;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
 .sansation-regular {
     font-family: "Sansation", sans-serif;
     font-weight: 400;
@@ -273,4 +278,3 @@ h1, h2, h3, h4, h5, h6, p , label {
 .collapsible-content .uk-button-secondary {
     margin-bottom: 15px;
 }
-
