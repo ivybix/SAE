@@ -297,24 +297,28 @@
                 </div>
             </div>
 
-            <!-- Matériel au Rebut reste inchangé -->
             <div class="uk-margin-medium-bottom collapsible-section">
-                <input type="checkbox" id="toggle-rebut" class="toggle-checkbox">
-                <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
-                <div class="collapsible-content">
-                    <div class="uk-overflow-auto">
-                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                            <thead>
+    <input type="checkbox" id="toggle-rebut" class="toggle-checkbox">
+    <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
+    <div class="collapsible-content">
+
+        <div class="uk-margin-medium-bottom collapsible-section">
+            <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
+            <label for="toggle-rebut-machines" class="toggle-label sansation-regular">Machines</label>
+            <div class="collapsible-content">
+                <div class="uk-overflow-auto">
+                    <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                        <thead>
                             <tr>
                                 <th>Actions</th>
                                 <th>Nom</th>
                                 <th>Numéro de Série</th>
                                 <th>UC</th>
-                                <th>Moniteur</th>
+                                <th>OS</th>
                                 <th>Ancienne Localisation</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             <tr>
                                 <td class="uk-width-small">
                                     <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
@@ -322,14 +326,50 @@
                                 <td>VieuxPC-01</td>
                                 <td>SNOLD001</td>
                                 <td>Compaq Deskpro</td>
-                                <td>iiyama ProLite E22</td>
+                                <td>Windows XP</td>
                                 <td>Stock B</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+
+        <div class="uk-margin-medium-bottom collapsible-section">
+            <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
+            <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
+            <div class="collapsible-content">
+                <div class="uk-overflow-auto">
+                    <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                        <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Numéro de Série</th>
+                                <th>Marque</th>
+                                <th>Modèle</th>
+                                <th>Taille</th>
+                                <th>Connecteur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="uk-width-small">
+                                    <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
+                                </td>
+                                <td>DMOLD222</td>
+                                <td>iiyama</td>
+                                <td>ProLite E22</td>
+                                <td>22"</td>
+                                <td>VGA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
         </div>
     </div>
