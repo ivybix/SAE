@@ -9,35 +9,52 @@ if (!$conn) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $_POST['username'];
-    $pass = $_POST['password'];
+    $pass = MD5($_POST['password']);
 
-    $sql = "SELECT password FROM Users WHERE user =". $user;
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT password FROM Users WHERE usertype = ?";
+    $stmt = mysqli_prepare($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if ($pass === $row['password']) {
-            $_SESSION['user'] = $user;
-
-            if ($user == "technicien") {
-                header("Location: technicien.html");
+    if ($stmt) {
+        if (mysqli_stmt_bind_param($stmt, "s", $user)) {
+            if (mysqli_stmt_execute($stmt)) {
+                
+                $result = mysqli_stmt_get_result($stmt);
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $db_password = $row['password'];
+                    
+                    if ($pass == $db_password) { 
+                        $_SESSION['user'] = $user;
+                        
+                        if ($user == "tech1") {
+                            header("Location: technicien.html");
+                        }
+                        else if ($user == "sysadmin") {
+                            header("Location: adminsystem.html");
+                        }
+                        else if ($user == "adminweb") {
+                            header("Location: adminweb.html");
+                        } 
+                        else {
+                            header("Location: Index.html");
+                        }
+                        exit;
+                    } else {
+                        echo "Mot de passe incorrect."; 
+                    }
+                } else {
+                    echo "Utilisateur non trouvé."; 
+                }
+            } else {
+                echo "Erreur d'exécution de la requête.";
             }
-            else if ($user == "admin_system") {
-                header("Location: adminsystem.html");
-            }
-            else if ($user == "admin_web") {
-                header("Location: adminweb.html");
-            }else {
-                header("Location: index.html");
-            }
-            exit;
         } else {
-            echo "Mot de passe incorrect.";
+            echo "Erreur de liaison des paramètres.";
         }
+        mysqli_stmt_close($stmt); 
     } else {
-        echo "Utilisateur non trouvé.";
+        echo "Erreur de préparation de la requête.";
     }
 }
 
 mysqli_close($conn);
-
+?>
