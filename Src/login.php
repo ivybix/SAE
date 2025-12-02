@@ -9,51 +9,57 @@ if (!$conn) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $_POST['login'];
-    $pass = MD5($_POST['password']);
+    $pass = MD5($_POST['password']); 
 
-    $sql = "SELECT password FROM Users WHERE login = ?";
+    $sql = "SELECT * FROM Users WHERE login = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
-    if ($stmt) {
-        if (mysqli_stmt_bind_param($stmt, "s", $user)) {
-            if (mysqli_stmt_execute($stmt)) {
-                
-                $result = mysqli_stmt_get_result($stmt);
-                if ($row = mysqli_fetch_assoc($result)) {
-                    $db_password = $row['password'];
-                    
-                    if ($pass == $db_password) { 
-                        $_SESSION['user'] = $user;
-                        
-                        if ($user == "tech1") {
-                            header("Location: technicien.html");
-                        }
-                        else if ($user == "sysadmin") {
-                            header("Location: adminsystem.html");
-                        }
-                        else if ($user == "adminweb") {
-                            header("Location: adminweb.html");
-                        } 
-                        else {
-                            header("Location: index.html");
-                        }
-                        exit;
-                    } else {
-                        echo "Mot de passe incorrect."; 
-                    }
-                } else {
-                    echo "Utilisateur non trouvé."; 
-                }
-            } else {
-                echo "Erreur d'exécution de la requête.";
-            }
-        } else {
-            echo "Erreur de liaison des paramètres.";
-        }
-        mysqli_stmt_close($stmt); 
-    } else {
-        echo "Erreur de préparation de la requête.";
+    if (!$stmt) {
+        echo "Erreur dans la préparation de la requête.";
+        mysqli_close($conn);
+        exit;
     }
+
+    if (!mysqli_stmt_bind_param($stmt, "s", $user)) {
+        echo "Erreur de liaison des paramètres.";
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        exit;
+    }
+
+    if (!mysqli_stmt_execute($stmt)) {
+        echo "Erreur d'exécution de la requête.";
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        exit;
+    }
+    
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if ($row = mysqli_fetch_assoc($result)) {
+        $db_password = $row['password'];
+        $db_role = $row['role'];
+
+        if ($pass == $db_password) {
+            $_SESSION['user'] = $user;
+            
+            if ($db_role == "tech") {
+                header("Location: technicien.html");
+            } else if ($db_role == "sysadmin") {
+                header("Location: adminsystem.html");
+            } else if ($db_role == "adminweb") {
+                header("Location: adminweb.html");
+            }
+            
+            exit; 
+        } else {
+            echo "Mot de passe incorrect.";
+        }
+    } else {
+        echo "Utilisateur introuvable."; 
+    }
+    
+    mysqli_stmt_close($stmt);
 }
 
 mysqli_close($conn);
