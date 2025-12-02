@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['user'] = $user;
             
             if ($db_role == "tech") {
-                header("Location: technicien.html");
+                header("Location: inventaire.html");
             } else if ($db_role == "sysadmin") {
                 header("Location: adminsystem.html");
             } else if ($db_role == "adminweb") {
