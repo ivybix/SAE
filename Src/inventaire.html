@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
-    <title>Inventaire</title>
-
+    <title>Inventaire - Espace Technicien</title>
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="CSS/uikit.css" />
     <link rel="stylesheet" href="CSS/uikit-rtl.css" />
 </head>
 <body>
-
 <nav class="uk-navbar-container uk-navbar-transparent uk-align-center">
     <div class="uk-container">
         <div class="uk-navbar">
@@ -33,29 +31,22 @@
         </div>
     </div>
 </nav>
-
 <div class="uk-container uk-margin-medium-top">
     <h1 class="uk-text-center sansation-bold">Espace Technicien - Inventaire</h1>
-
-    <!-- Onglet Inventaire -->
     <div class="uk-margin-medium-bottom collapsible-section">
         <input type="checkbox" id="toggle-inventaire" class="toggle-checkbox" checked>
         <label for="toggle-inventaire" class="toggle-label sansation-regular">Inventaire</label>
         <div class="collapsible-content">
-
-            <!-- Machines -->
             <div class="uk-margin-medium-bottom collapsible-section">
                 <input type="checkbox" id="toggle-machines" class="toggle-checkbox" checked>
                 <label for="toggle-machines" class="toggle-label sansation-regular">Machines</label>
                 <div class="collapsible-content">
-
-                    <!-- Consulter Machines -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-machines-consulter" class="toggle-checkbox" checked>
                         <label for="toggle-machines-consulter" class="toggle-label sansation-regular">Consulter</label>
                         <div class="collapsible-content">
                             <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
-                            <div class="uk-overflow-auto">
+                            <div class="uk-overflow-auto" style="max-height: 300px;">
                                 <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
                                     <thead>
                                     <tr>
@@ -86,8 +77,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Ajouter Machines -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-machines-ajouter" class="toggle-checkbox">
                         <label for="toggle-machines-ajouter" class="toggle-label sansation-regular">Ajouter</label>
@@ -141,8 +130,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Supprimer Machines -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-machines-supprimer" class="toggle-checkbox">
                         <label for="toggle-machines-supprimer" class="toggle-label sansation-regular">Supprimer</label>
@@ -166,23 +153,18 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <!-- Écrans -->
             <div class="uk-margin-medium-bottom collapsible-section">
-                <input type="checkbox" id="toggle-ecrans" class="toggle-checkbox">
+                <input type="checkbox" id="toggle-ecrans" class="toggle-checkbox" checked>
                 <label for="toggle-ecrans" class="toggle-label sansation-regular">Écrans</label>
                 <div class="collapsible-content">
-
-                    <!-- Consulter Écrans -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-ecrans-consulter" class="toggle-checkbox" checked>
                         <label for="toggle-ecrans-consulter" class="toggle-label sansation-regular">Consulter</label>
                         <div class="collapsible-content">
                             <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
-                            <div class="uk-overflow-auto">
+                            <div class="uk-overflow-auto" style="max-height: 300px;">
                                 <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
                                     <thead>
                                     <tr>
@@ -213,8 +195,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Ajouter Écrans -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-ecrans-ajouter" class="toggle-checkbox">
                         <label for="toggle-ecrans-ajouter" class="toggle-label sansation-regular">Ajouter</label>
@@ -268,8 +248,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Supprimer Écrans -->
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-ecrans-supprimer" class="toggle-checkbox">
                         <label for="toggle-ecrans-supprimer" class="toggle-label sansation-regular">Supprimer</label>
@@ -293,88 +271,80 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
+        </div>
+    </div>
+    <div class="uk-margin-medium-bottom collapsible-section">
+        <input type="checkbox" id="toggle-rebut" class="toggle-checkbox" checked>
+        <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
+        <div class="collapsible-content">
             <div class="uk-margin-medium-bottom collapsible-section">
-    <input type="checkbox" id="toggle-rebut" class="toggle-checkbox">
-    <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
-    <div class="collapsible-content">
-
-        <div class="uk-margin-medium-bottom collapsible-section">
-            <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
-            <label for="toggle-rebut-machines" class="toggle-label sansation-regular">Machines</label>
-            <div class="collapsible-content">
-                <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                        <thead>
-                            <tr>
-                                <th>Actions</th>
-                                <th>Nom</th>
-                                <th>Numéro de Série</th>
-                                <th>UC</th>
-                                <th>OS</th>
-                                <th>Ancienne Localisation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="uk-width-small">
-                                    <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
-                                </td>
-                                <td>VieuxPC-01</td>
-                                <td>SNOLD001</td>
-                                <td>Compaq Deskpro</td>
-                                <td>Windows XP</td>
-                                <td>Stock B</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
+                <label for="toggle-rebut-machines" class="toggle-label sansation-regular">Machines</label>
+                <div class="collapsible-content">
+                    <div class="uk-overflow-auto" style="max-height: 300px;">
+                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Actions</th>
+                                    <th>Nom</th>
+                                    <th>Numéro de Série</th>
+                                    <th>UC</th>
+                                    <th>OS</th>
+                                    <th>Ancienne Localisation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="uk-width-small">
+                                        <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
+                                    </td>
+                                    <td>VieuxPC-01</td>
+                                    <td>SNOLD001</td>
+                                    <td>Compaq Deskpro</td>
+                                    <td>Windows XP</td>
+                                    <td>Stock B</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin-medium-bottom collapsible-section">
+                <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
+                <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
+                <div class="collapsible-content">
+                    <div class="uk-overflow-auto" style="max-height: 300px;">
+                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Actions</th>
+                                    <th>Numéro de Série</th>
+                                    <th>Marque</th>
+                                    <th>Modèle</th>
+                                    <th>Taille</th>
+                                    <th>Connecteur</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="uk-width-small">
+                                        <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
+                                    </td>
+                                    <td>DMOLD222</td>
+                                    <td>iiyama</td>
+                                    <td>ProLite E22</td>
+                                    <td>22"</td>
+                                    <td>VGA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="uk-margin-medium-bottom collapsible-section">
-            <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
-            <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
-            <div class="collapsible-content">
-                <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                        <thead>
-                            <tr>
-                                <th>Actions</th>
-                                <th>Numéro de Série</th>
-                                <th>Marque</th>
-                                <th>Modèle</th>
-                                <th>Taille</th>
-                                <th>Connecteur</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="uk-width-small">
-                                    <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
-                                </td>
-                                <td>DMOLD222</td>
-                                <td>iiyama</td>
-                                <td>ProLite E22</td>
-                                <td>22"</td>
-                                <td>VGA</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
-
-        </div>
-    </div>
-
-</div>
-
 </body>
 </html>
