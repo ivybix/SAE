@@ -9,7 +9,7 @@ if (!$conn) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $_POST['login'];
-    $pass = MD5($_POST['password']); 
+    $pass = MD5($_POST['password']);
 
     $sql = "SELECT password, role FROM Users WHERE login = ?";
     $stmt = mysqli_prepare($conn, $sql);
@@ -33,32 +33,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         mysqli_close($conn);
         exit;
     }
-    
+
     $result = mysqli_stmt_get_result($stmt);
-    
+
     if ($row = mysqli_fetch_assoc($result)) {
         $db_password = $row['password'];
         $db_role = $row['role'];
 
         if ($pass == $db_password) {
             $_SESSION['user'] = $user;
-            
+            $_SESSION['role'] = $db_role;
+
             if ($db_role == "tech") {
-                header("Location: inventaire.html");
+                header("Location: inventaire.php");
             } else if ($db_role == "sysadmin") {
                 header("Location: adminsystem.html");
             } else if ($db_role == "adminweb") {
                 header("Location: adminweb.html");
             }
-            
-            exit; 
+
+            exit;
         } else {
             echo "Mot de passe incorrect.";
         }
     } else {
-        echo "Utilisateur introuvable."; 
+        echo "Utilisateur introuvable.";
     }
-    
+
     mysqli_stmt_close($stmt);
 }
 
