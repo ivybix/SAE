@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $_POST['login'];
     $pass = MD5($_POST['password']); 
 
-    $sql = "SELECT * FROM Users WHERE login = ?";
+    $sql = "SELECT password, role FROM Users WHERE login = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     if (!$stmt) {
