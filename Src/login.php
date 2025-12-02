@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-$conn = mysqli_connect("localhost", "inkware", "!sae2025!", "Parc_informatique");
+$conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {
     die("Connexion échouée : " . mysqli_connect_error());
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $user = $_POST['username'];
+    $user = $_POST['login'];
     $pass = MD5($_POST['password']);
 
-    $sql = "SELECT password FROM Users WHERE usertype = ?";
+    $sql = "SELECT password FROM Users WHERE login = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt) {
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             header("Location: adminweb.html");
                         } 
                         else {
-                            header("Location: Index.html");
+                            header("Location: index.html");
                         }
                         exit;
                     } else {
