@@ -18,25 +18,13 @@
             <div class="uk-navbar-center">
                 <ul class="uk-navbar-nav menu">
                     <li>
-                        <a class="uk-navbar-item uk-logo" href="index.html" target="_self" aria-label="Acceuil">
-                            <img src="Ressources/logo-nav.ico" alt="Logo InkWare (Acceuil)" style="height: 40px;">
+                        <a class="uk-navbar-item uk-logo" href="index.html" target="_self" aria-label="Accueil">
+                            <img src="Ressources/logo-nav.ico" alt="Logo InkWare (Accueil)" style="height: 40px;">
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="index.html">
-                            Accueil
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="technicien.html">
-                            Inventaire
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="login.html" target="_self">
-                            Connexion
-                        </a>
-                    </li>
+                    <li class="menu-item"><a href="index.html">Accueil</a></li>
+                    <li class="menu-item"><a href="technicien.html">Inventaire</a></li>
+                    <li class="menu-item"><a href="login.html" target="_self">Connexion</a></li>
                 </ul>
                 <div class="uk-navbar-center-right">
                     <button class="uk-button uk-button-default" hidden><a class="sansation-regular">Déconnexion</a></button>
@@ -47,139 +35,306 @@
 </nav>
 
 <div class="uk-container uk-margin-medium-top">
+    <h1 class="uk-text-center sansation-bold">Espace Technicien - Inventaire</h1>
 
-    <h1 class=" uk-text-center sansation-bold">Espace Technicien - Inventaire</h1>
-
+    <!-- Onglet Inventaire -->
     <div class="uk-margin-medium-bottom collapsible-section">
-        <input type="checkbox" id="toggle-parc" class="toggle-checkbox" checked>
-        <label for="toggle-parc" class="toggle-label sansation-regular">Parc Informatique </label>
+        <input type="checkbox" id="toggle-inventaire" class="toggle-checkbox" checked>
+        <label for="toggle-inventaire" class="toggle-label sansation-regular">Inventaire</label>
         <div class="collapsible-content">
-            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded" type="button">Exporter en CSV </button>
-            <div class="uk-overflow-auto">
-                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                    <thead>
-                    <tr>
-                        <th>Actions</th>
-                        <th>Nom</th>
-                        <th>Numéro de Série</th>
-                        <th>UC</th>
-                        <th>Moniteur</th> <th>OS</th>
-                        <th>Localisation</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="uk-width-small">
-                            <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Modifier</button>
-                            <button class="uk-button uk-button-small uk-button-danger uk-border-rounded">Supprimer</button>
-                        </td>
-                        <td>PC-Bureau-01</td>
-                        <td>SN123456789</td>
-                        <td>Dell OptiPlex 7080</td> <td>Dell E2420H</td> <td>Windows 11</td>
-                        <td>Salle B101</td>
-                    </tr>
-                    <tr>
-                        <td class="uk-width-small">
-                            <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Modifier</button>
-                            <button class="uk-button uk-button-small uk-button-danger uk-border-rounded">Supprimer</button>
-                        </td>
-                        <td>Serveur-Web-01</td>
-                        <td>SN987654321</td>
-                        <td>HP ProLiant DL360</td> <td>N/A (Serveur)</td> <td>Linux Ubuntu</td>
-                        <td>Salle Serveur A01</td>
-                    </tr>
-                    <tr>
-                        <td class="uk-width-small">
-                            <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Modifier</button>
-                            <button class="uk-button uk-button-small uk-button-danger uk-border-rounded">Supprimer</button>
-                        </td>
-                        <td>Portable-Compta-05</td>
-                        <td>SNABC123DEF</td>
-                        <td>Lenovo ThinkPad T14</td> <td>Intégré (Portable)</td> <td>Windows 10</td>
-                        <td>Bureau C205</td>
-                    </tr>
-                    </tbody>
-                </table>
 
-            </div>
-        </div>
-        <div class="collapsible-section">
-            <input type="checkbox" id="toggle-rebut" class="toggle-checkbox">
-            <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut </label>
-            <div class="collapsible-content">
-                <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                        <thead>
-                        <tr>
-                            <th>Actions</th>
-                            <th>Nom</th>
-                            <th>Numéro de Série</th>
-                            <th>UC</th>
-                            <th>Moniteur</th> <th>Ancienne Localisation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="uk-width-small">
-                                <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
-                            </td>
-                            <td>VieuxPC-01</td>
-                            <td>SNOLD001</td>
-                            <td>Compaq Deskpro</td> <td>iiyama ProLite E22</td> <td>Stock B</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!-- Machines -->
+            <div class="uk-margin-medium-bottom collapsible-section">
+                <input type="checkbox" id="toggle-machines" class="toggle-checkbox" checked>
+                <label for="toggle-machines" class="toggle-label sansation-regular">Machines</label>
+                <div class="collapsible-content">
 
-        </div>
-
-        <div class="uk-margin-medium-bottom uk-card uk-card-default uk-card-body uk-width-1-1" id="technicien">
-            <h2 class="uk-card-title sansation-regular">Ajouter une Machine </h2>
-            <form class="uk-form-stacked">
-                <div class="uk-grid-small uk-child-width-1-3@s uk-grid" >
-                    <div>
-                        <label class="uk-form-label" for="form-name">Nom </label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-name" type="text" placeholder="PC-Bureau-02"> </div>
-                    </div>
-                    <div>
-                        <label class="uk-form-label" for="form-serial">Numéro de Série </label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-serial" type="text" placeholder="SNAA112233"> </div>
-                    </div>
-                    <div>
-                        <label class="uk-form-label" for="form-uc">UC </label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-uc" type="text" placeholder="HP ProDesk G5"> </div>
-                    </div>
-                    <div>
-                        <label class="uk-form-label" for="form-os">OS</label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-os" type="text" placeholder="Windows 11">
+                    <!-- Consulter Machines -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-machines-consulter" class="toggle-checkbox" checked>
+                        <label for="toggle-machines-consulter" class="toggle-label sansation-regular">Consulter</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-overflow-auto">
+                                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Actions</th>
+                                        <th>Nom</th>
+                                        <th>Numéro de Série</th>
+                                        <th>UC</th>
+                                        <th>Moniteur</th>
+                                        <th>OS</th>
+                                        <th>Localisation</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Modifier</button>
+                                            <button class="uk-button uk-button-small uk-button-danger uk-border-rounded">Supprimer</button>
+                                        </td>
+                                        <td>PC-Bureau-01</td>
+                                        <td>SN123456789</td>
+                                        <td>Dell OptiPlex 7080</td>
+                                        <td>Dell E2420H</td>
+                                        <td>Windows 11</td>
+                                        <td>Salle B101</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <label class="uk-form-label" for="form-location">Localisation </label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-location" type="text" placeholder="Bureau D301"> </div>
-                    </div>
-                    <div>
-                        <label class="uk-form-label" for="form-monitor">Moniteur </label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-monitor" type="text" placeholder="Asus VA24EHE">
+
+                    <!-- Ajouter Machines -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-machines-ajouter" class="toggle-checkbox">
+                        <label for="toggle-machines-ajouter" class="toggle-label sansation-regular">Ajouter</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
+                                <h2 class="uk-card-title sansation-regular">Ajouter une Machine</h2>
+                                <form class="uk-form-stacked">
+                                    <div class="uk-grid-small uk-child-width-1-3@s uk-grid">
+                                        <div>
+                                            <label class="uk-form-label">Nom</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="PC-Bureau-02">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Numéro de Série</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="SNAA112233">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">UC</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="HP ProDesk G5">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">OS</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="Windows 11">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Localisation</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="Bureau D301">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Moniteur</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="Asus VA24EHE">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-top">
+                                        <button class="uk-button uk-button-primary uk-border-rounded" type="button">Ajouter</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Supprimer Machines -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-machines-supprimer" class="toggle-checkbox">
+                        <label for="toggle-machines-supprimer" class="toggle-label sansation-regular">Supprimer</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
+                                <h2 class="uk-card-title sansation-regular">Supprimer une Machine</h2>
+                                <form class="uk-form-stacked">
+                                    <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
+                                        <div>
+                                            <label class="uk-form-label">Numéro de Série</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="SNXXXXXXX">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-top">
+                                        <button class="uk-button uk-button-danger uk-border-rounded" type="button">Supprimer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="uk-margin-top">
-                    <button class="uk-button uk-button-primary uk-border-rounded" type="button" style="background: #0A57A3">Ajouter </button>
-                </div>
-            </form>
-            <div class="uk-margin-top">
-                <button class="uk-button uk-button-secondary uk-border-rounded" type="button">Importer depuis CSV </button>
             </div>
+
+            <!-- Écrans -->
+            <div class="uk-margin-medium-bottom collapsible-section">
+                <input type="checkbox" id="toggle-ecrans" class="toggle-checkbox">
+                <label for="toggle-ecrans" class="toggle-label sansation-regular">Écrans</label>
+                <div class="collapsible-content">
+
+                    <!-- Consulter Écrans -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-ecrans-consulter" class="toggle-checkbox" checked>
+                        <label for="toggle-ecrans-consulter" class="toggle-label sansation-regular">Consulter</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-overflow-auto">
+                                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Actions</th>
+                                        <th>Numéro de Série</th>
+                                        <th>Marque</th>
+                                        <th>Modèle</th>
+                                        <th>Taille</th>
+                                        <th>Connecteur</th>
+                                        <th>Assigné à</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Modifier</button>
+                                            <button class="uk-button uk-button-small uk-button-danger uk-border-rounded">Supprimer</button>
+                                        </td>
+                                        <td>DMXUMX6M5R</td>
+                                        <td>Dell</td>
+                                        <td>P2419H</td>
+                                        <td>24"</td>
+                                        <td>HDMI</td>
+                                        <td>PRODESK-VZ-0779</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ajouter Écrans -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-ecrans-ajouter" class="toggle-checkbox">
+                        <label for="toggle-ecrans-ajouter" class="toggle-label sansation-regular">Ajouter</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
+                                <h2 class="uk-card-title sansation-regular">Ajouter un Écran</h2>
+                                <form class="uk-form-stacked">
+                                    <div class="uk-grid-small uk-child-width-1-3@s uk-grid">
+                                        <div>
+                                            <label class="uk-form-label">Numéro de Série</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="DMXXXXXXX">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Marque</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="Dell">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Modèle</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="P2419H">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Taille (inch)</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="24">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Connecteur</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="HDMI">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="uk-form-label">Assigné à</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="PC-Bureau-01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-top">
+                                        <button class="uk-button uk-button-primary uk-border-rounded" type="button">Ajouter</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Supprimer Écrans -->
+                    <div class="uk-margin-small-bottom collapsible-section">
+                        <input type="checkbox" id="toggle-ecrans-supprimer" class="toggle-checkbox">
+                        <label for="toggle-ecrans-supprimer" class="toggle-label sansation-regular">Supprimer</label>
+                        <div class="collapsible-content">
+                            <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis CSV</button>
+                            <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
+                                <h2 class="uk-card-title sansation-regular">Supprimer un Écran</h2>
+                                <form class="uk-form-stacked">
+                                    <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
+                                        <div>
+                                            <label class="uk-form-label">Numéro de Série</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" type="text" placeholder="DMXXXXXXX">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-top">
+                                        <button class="uk-button uk-button-danger uk-border-rounded" type="button">Supprimer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Matériel au Rebut reste inchangé -->
+            <div class="uk-margin-medium-bottom collapsible-section">
+                <input type="checkbox" id="toggle-rebut" class="toggle-checkbox">
+                <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
+                <div class="collapsible-content">
+                    <div class="uk-overflow-auto">
+                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                            <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Nom</th>
+                                <th>Numéro de Série</th>
+                                <th>UC</th>
+                                <th>Moniteur</th>
+                                <th>Ancienne Localisation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="uk-width-small">
+                                    <button class="uk-button uk-button-small uk-button-secondary uk-border-rounded">Restaurer</button>
+                                </td>
+                                <td>VieuxPC-01</td>
+                                <td>SNOLD001</td>
+                                <td>Compaq Deskpro</td>
+                                <td>iiyama ProLite E22</td>
+                                <td>Stock B</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>
+
 </body>
 </html>
