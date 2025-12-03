@@ -5,19 +5,19 @@ $is_tech = isset($_SESSION['role']) && $_SESSION['role'] === 'tech';
 $conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {
-    die("Connexion échouée");
+    die("Connexion Ã©chouÃ©e");
 }
 
-$sql_devices = "SELECT * FROM Devices";
+$sql_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Active_Devices)";
 $result_devices = mysqli_query($conn, $sql_devices);
 
-$sql_monitors = "SELECT * FROM Monitors";
+$sql_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Active_Monitors)";
 $result_monitors = mysqli_query($conn, $sql_monitors);
 
-$sql_retired_devices = "SELECT * FROM Retired_devices";
+$sql_retired_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Retired_Devices)";
 $result_retired_devices = mysqli_query($conn, $sql_retired_devices);
 
-$sql_retired_monitors = "SELECT * FROM Retired_monitors";
+$sql_retired_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Retired_Monitors)";
 $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                     <li class="menu-item"><a href="login.html" target="_self">Connexion</a></li>
                 </ul>
                 <div class="uk-navbar-center-right">
-                    <button class="uk-button uk-button-default" hidden><a class="sansation-regular">Déconnexion</a></button>
+                    <button class="uk-button uk-button-default" hidden><a class="sansation-regular">DÃ©connexion</a></button>
                 </div>
             </div>
         </div>
@@ -74,9 +74,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                     <tr>
                                         <?php if ($is_tech): ?><th>Actions</th><?php endif; ?>
                                         <th>Nom</th>
-                                        <th>Numéro de Série</th>
+                                        <th>NumÃ©ro de SÃ©rie</th>
                                         <th>Constructeur</th>
-                                        <th>Modèle</th>
+                                        <th>ModÃ¨le</th>
                                         <th>OS</th>
                                         <th>Domaine</th>
                                         <th>Location</th>
@@ -126,9 +126,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="serial_device">Numéro de Série</label>
+                                                <label class="uk-form-label" for="serial_device">NumÃ©ro de SÃ©rie</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="serial_device" placeholder="Numéro de Série">
+                                                    <input class="uk-input" type="text" id="serial_device" placeholder="NumÃ©ro de SÃ©rie">
                                                 </div>
                                             </div>
                                             <div>
@@ -138,9 +138,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="model_device">Modèle</label>
+                                                <label class="uk-form-label" for="model_device">ModÃ¨le</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="model_device" placeholder="Modèle">
+                                                    <input class="uk-input" type="text" id="model_device" placeholder="ModÃ¨le">
                                                 </div>
                                             </div>
                                             <div>
@@ -186,9 +186,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="building">Bâtiment</label>
+                                                <label class="uk-form-label" for="building">BÃ¢timent</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="building" placeholder="Bâtiment">
+                                                    <input class="uk-input" type="text" id="building" placeholder="BÃ¢timent">
                                                 </div>
                                             </div>
                                             <div>
@@ -232,7 +232,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                     <form class="uk-form-stacked">
                                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                                             <div>
-                                                <label class="uk-form-label">Numéro de Série</label>
+                                                <label class="uk-form-label">NumÃ©ro de SÃ©rie</label>
                                                 <div class="uk-form-controls">
                                                     <input class="uk-input" type="text" placeholder="SNXXXXXXX">
                                                 </div>
@@ -250,7 +250,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
             </div>
             <div class="uk-margin-medium-bottom collapsible-section">
                 <input type="checkbox" id="toggle-ecrans" class="toggle-checkbox" checked>
-                <label for="toggle-ecrans" class="toggle-label sansation-regular">Écrans</label>
+                <label for="toggle-ecrans" class="toggle-label sansation-regular">Ã‰crans</label>
                 <div class="collapsible-content">
                     <div class="uk-margin-small-bottom collapsible-section">
                         <input type="checkbox" id="toggle-ecrans-consulter" class="toggle-checkbox" checked>
@@ -262,12 +262,12 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                     <thead>
                                     <tr>
                                         <?php if ($is_tech): ?><th>Actions</th><?php endif; ?>
-                                        <th>Numéro de Série</th>
+                                        <th>NumÃ©ro de SÃ©rie</th>
                                         <th>Constructeur</th>
-                                        <th>Modèle</th>
+                                        <th>ModÃ¨le</th>
                                         <th>Dimensions_pouces</th>
-                                        <th>Résolution</th>
-                                        <th>Machine Associée</th>
+                                        <th>RÃ©solution</th>
+                                        <th>Machine AssociÃ©e</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -303,13 +303,13 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                             <div class="collapsible-content">
                                 <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-border-rounded">Importer depuis un CSV</button>
                                 <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
-                                    <h2 class="uk-card-title sansation-regular">Ajouter un Écran</h2>
+                                    <h2 class="uk-card-title sansation-regular">Ajouter un Ã‰cran</h2>
                                     <form class="uk-form-stacked">
                                         <div class="uk-grid-small uk-child-width-1-3@s uk-grid">
                                             <div>
-                                                <label class="uk-form-label" for="serial_monitor">Numéro de Série</label>
+                                                <label class="uk-form-label" for="serial_monitor">NumÃ©ro de SÃ©rie</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="serial_monitor" placeholder="Numéro de Série">
+                                                    <input class="uk-input" type="text" id="serial_monitor" placeholder="NumÃ©ro de SÃ©rie">
                                                 </div>
                                             </div>
                                             <div>
@@ -319,9 +319,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="model_monitor">Modèle</label>
+                                                <label class="uk-form-label" for="model_monitor">ModÃ¨le</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="model_monitor" placeholder="Modèle">
+                                                    <input class="uk-input" type="text" id="model_monitor" placeholder="ModÃ¨le">
                                                 </div>
                                             </div>
                                             <div>
@@ -331,9 +331,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="resolution">Résolution</label>
+                                                <label class="uk-form-label" for="resolution">RÃ©solution</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="resolution" placeholder="Résolution">
+                                                    <input class="uk-input" type="text" id="resolution" placeholder="RÃ©solution">
                                                 </div>
                                             </div>
                                             <div>
@@ -343,9 +343,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="uk-form-label" for="attached_to">Machine Associée</label>
+                                                <label class="uk-form-label" for="attached_to">Machine AssociÃ©e</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="attached_to" placeholder="Machine Associée">
+                                                    <input class="uk-input" type="text" id="attached_to" placeholder="Machine AssociÃ©e">
                                                 </div>
                                             </div>
                                         </div>
@@ -361,11 +361,11 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                             <label for="toggle-ecrans-supprimer" class="toggle-label sansation-regular">Supprimer</label>
                             <div class="collapsible-content">
                                 <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
-                                    <h2 class="uk-card-title sansation-regular">Supprimer un Écran</h2>
+                                    <h2 class="uk-card-title sansation-regular">Supprimer un Ã‰cran</h2>
                                     <form class="uk-form-stacked">
                                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                                             <div>
-                                                <label class="uk-form-label">Numéro de Série</label>
+                                                <label class="uk-form-label">NumÃ©ro de SÃ©rie</label>
                                                 <div class="uk-form-controls">
                                                     <input class="uk-input" type="text" placeholder="DMXXXXXXX">
                                                 </div>
@@ -385,7 +385,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
     </div>
     <div class="uk-margin-medium-bottom collapsible-section">
         <input type="checkbox" id="toggle-rebut" class="toggle-checkbox" checked>
-        <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
+        <label for="toggle-rebut" class="toggle-label sansation-regular">MatÃ©riel au Rebut</label>
         <div class="collapsible-content">
             <div class="uk-margin-medium-bottom collapsible-section">
                 <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
@@ -397,9 +397,9 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                             <tr>
                                 <?php if ($is_tech): ?><th>Actions</th><?php endif; ?>
                                 <th id="name_rebut">Nom</th>
-                                <th id="serial_device_rebut">Numéro de Série</th>
+                                <th id="serial_device_rebut">NumÃ©ro de SÃ©rie</th>
                                 <th id="manufacturer_device_rebut">Constructeur</th>
-                                <th id="model_device_rebut">Modèle</th>
+                                <th id="model_device_rebut">ModÃ¨le</th>
                                 <th id="os_rebut">OS</th>
                                 <th id="domain_rebut">Domaine</th>
                                 <th id="location_rebut">Location</th>
@@ -433,19 +433,19 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
             </div>
             <div class="uk-margin-medium-bottom collapsible-section">
                 <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
-                <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
+                <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Ã‰crans</label>
                 <div class="collapsible-content">
                     <div class="uk-overflow-auto" style="max-height: 300px;">
                         <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
                             <thead>
                             <tr>
                                 <?php if ($is_tech): ?><th>Actions</th><?php endif; ?>
-                                <th id="serial_monitor_rebut">Numéro de Série</th>
+                                <th id="serial_monitor_rebut">NumÃ©ro de SÃ©rie</th>
                                 <th id="manufacturer_monitor_rebut">Constructeur</th>
-                                <th id="model_monitor_rebut">Modèle</th>
+                                <th id="model_monitor_rebut">ModÃ¨le</th>
                                 <th id="size_inch_rebut">Dimensions_pouces</th>
-                                <th id="resolution_rebut">Résolution</th>
-                                <th id="attached_to_rebut">Machine Associée</th>
+                                <th id="resolution_rebut">RÃ©solution</th>
+                                <th id="attached_to_rebut">Machine AssociÃ©e</th>
                             </tr>
                             </thead>
                             <tbody>
