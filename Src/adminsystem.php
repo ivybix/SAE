@@ -1,0 +1,86 @@
+<?php
+
+session_start();
+if (($_SESSION['role']) != 'sysadmin'): {
+    header('Location: index.php');
+};
+endif;
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <title>Administration Système - Logs</title>
+    <link rel="stylesheet" href="CSS/Style.css">
+    <link rel="stylesheet" href="CSS/uikit.css" />
+    <link rel="stylesheet" href="CSS/uikit-rtl.css" />
+</head>
+<body>
+
+<?php include_once 'navbar.php'; ?>
+
+<div class="uk-container uk-margin-medium-top">
+    <h1 class="uk-text-center sansation-bold">Journal d'Activités (Logs)</h1>
+    <p class="uk-text-center uk-text-meta">Espace réservé à l'Administrateur Système (sysadmin)</p>
+
+    <div class="uk-card uk-card-default uk-card-body uk-margin-bottom">
+        <h3 class="sansation-regular">Filtres</h3>
+        <form class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-4@s">
+                <input class="uk-input" type="date" placeholder="Date">
+            </div>
+            <div class="uk-width-1-4@s">
+                <select class="uk-select">
+                    <option>Tous les utilisateurs</option>
+                    <option>adminweb</option>
+                    <option>tech1</option>
+                </select>
+            </div>
+            <div class="uk-width-1-4@s">
+                <button class="uk-button uk-button-primary">Filtrer</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-striped uk-table-hover uk-table-small">
+            <thead>
+                <tr>
+                    <th>Date & Heure</th>
+                    <th>Utilisateur</th>
+                    <th>Action</th>
+                    <th>IP</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>26/11/2025 10:45:12</td>
+                    <td>adminweb</td>
+                    <td>Création technicien "tech2"</td>
+                    <td>192.168.1.10</td>
+                    <td><span class="uk-label uk-label-success">Succès</span></td>
+                </tr>
+                <tr>
+                    <td>26/11/2025 10:42:00</td>
+                    <td>tech1</td>
+                    <td>Modification machine SN12345</td>
+                    <td>192.168.1.20</td>
+                    <td><span class="uk-label uk-label-success">Succès</span></td>
+                </tr>
+                <tr>
+                    <td>26/11/2025 09:15:33</td>
+                    <td>inconnu</td>
+                    <td>Tentative connexion échouée</td>
+                    <td>192.168.1.55</td>
+                    <td><span class="uk-label uk-label-danger">Échec</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

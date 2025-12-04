@@ -1,5 +1,10 @@
 <?php
 
+if (($_SESSION['role']) != 'adminweb'): {
+    header('Location: index.php');
+};
+endif;
+
 $conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {

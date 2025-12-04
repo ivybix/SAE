@@ -47,9 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($db_role == "tech") {
                 header("Location: inventaire.php");
             } else if ($db_role == "sysadmin") {
-                header("Location: adminsystem.html");
+                header("Location: adminsystem.php");
             } else if ($db_role == "adminweb") {
-                header("Location: adminweb.html");
+                header("Location: adminweb.php");
             }
 
             exit;
@@ -64,4 +64,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 mysqli_close($conn);
+
 ?>
