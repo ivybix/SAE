@@ -6,6 +6,21 @@
     font-style: normal;
     color: #F2E5D5 !important;
 }
+
+/* Règle de l'alerte UIkit pour forcer la couleur de fond et la bordure */
+.uk-alert-danger.uk-alert {
+    background-color: #8F1E24 !important; /* La couleur de fond que vous souhaitez */
+    color: #F2E5D5 !important; /* La couleur du texte pour qu'il soit lisible */
+    border-color: #8F1E24 !important; /* Assure que la bordure utilise également la couleur du fond */
+}
+
+/* Règle spécifique pour cibler le texte (p) et l'icône de fermeture,
+   nécessaire pour contrer la spécificité d'UIkit sur ces éléments internes */
+.uk-alert-danger.uk-alert p,
+.uk-alert-danger.uk-alert .uk-alert-close {
+    color: #F2E5D5 !important;
+}
+
 .uk-card-default {
 
     background-color: #01394F!important;

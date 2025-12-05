@@ -19,8 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_stmt = $conn->prepare($check_sql);
 
     if ($check_stmt === false) {
-        echo "Erreur de préparation de la vérification : " . $conn->error;
+
+        $message_echec = "Erreur de préparation de la vérification : " . $conn->error;
+
         mysqli_close($conn);
+        header("Location: adminweb.php?error=" . urlencode($message_echec));
         exit;
     }
 
@@ -29,32 +32,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_stmt->store_result(); 
 
     if ($check_stmt->num_rows > 0) {
-        echo "Erreur : Cet identifiant existe déjà. Veuillez en choisir un autre.";
+        $message_echec = "Erreur : Cet identifiant existe déjà. Veuillez en choisir un autre.";
         $check_stmt->close();
         mysqli_close($conn);
+        header("Location: adminweb.php?error=" . urlencode($message_echec));
         exit;
     }
-
-    $check_stmt->close(); 
+    $check_stmt->close();
 
     $mot_de_passe_hash = md5($mot_de_passe);
+    $role = 'tech';
 
-    $sql = "INSERT INTO Users (login, password) VALUES (?, ?)";
+    $sql = "INSERT INTO Users (login, password, role) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
-        echo "Erreur de préparation de la requête d'insertion : " . $conn->error;
+        $message_echec =  "Erreur de préparation de la requête d'insertion : " . $conn->error;
+        header("Location: adminweb.php?error=" . urlencode($message_echec));
     } else {
-        $stmt->bind_param("ss", $identifiant, $mot_de_passe_hash);
+        $stmt->bind_param("sss", $identifiant, $mot_de_passe_hash, $role);
 
         if ($stmt->execute()) {
-            echo "Technicien ajouté avec succès.";
+            $message= "Technicien ajouté avec succès.";
+            header("Location: adminweb.php?success=" . urlencode($message));
         } else {
-            echo "Erreur lors de l'insertion : " . $stmt->error;
+            $message_echec =  "Erreur lors de l'insertion : " . $stmt->error;
+            header("Location: adminweb.php?error=" . urlencode($message_echec));
         }
         $stmt->close();
     }
 }
-
 mysqli_close($conn);
 ?>

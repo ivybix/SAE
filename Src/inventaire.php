@@ -20,6 +20,8 @@ $result_retired_devices = mysqli_query($conn, $sql_retired_devices);
 
 $sql_retired_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Retired_Monitors)";
 $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,7 +77,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                             if ($is_tech) {
                                                 echo "<td>
                 
-                <a href='modifier.php?serial=" . urlencode($row['serial']) . "' 
+                <a href='modifier_machine.php?serial=" . urlencode($row['serial']) . "' 
                    class='uk-button uk-button-small uk-button-primary uk-border-rounded'>
                    Modifier
                 </a>
@@ -136,10 +138,35 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                             </div>
                                             <div>
                                                 <label class="uk-form-label"
-                                                       for="manufacturer_device">Constructeur</label>
+                                                       for="manufacturer_select">Constructeur</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" name="manufacturer_device"
-                                                           id="manufacturer_device" placeholder="Constructeur">
+
+                                                    <div class="uk-form-controls">
+                                                        <select class="uk-select" id="manufacturer_select"
+                                                                name="manufacturer" required>
+
+                                                            <option value="">-- Sélectionnez un constructeur --</option>
+
+                                                            <?php
+
+                                                            $sql_manufacturers = "SELECT name FROM Manufacturers ORDER BY name";
+                                                            $result_manufacturers = mysqli_query($conn, $sql_manufacturers);
+                                                            if (mysqli_num_rows($result_manufacturers) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($result_manufacturers)) {
+
+                                                                    $manufacturer_name = htmlspecialchars($row['name']);
+
+
+                                                                    echo "<option value=\"$manufacturer_name\">$manufacturer_name</option>";
+                                                                }
+                                                            }
+
+
+                                                            mysqli_free_result($result_manufacturers);
+                                                            ?>
+
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
@@ -253,17 +280,17 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                             <div class="collapsible-content">
                                 <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
                                     <h2 class="uk-card-title sansation-regular">Supprimer une Machine</h2>
-                                    <form class="uk-form-stacked">
+                                    <form class="uk-form-stacked" method="POST" action="suppression_machine.php">
                                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                                             <div>
                                                 <label class="uk-form-label">Numéro de Série</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" placeholder="SNXXXXXXX">
+                                                    <input class="uk-input" type="text" name="serial_devices" id="serial_devices" placeholder="SNXXXXXXX">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="uk-margin-top">
-                                            <button class="uk-button uk-button-danger uk-border-rounded" type="button">
+                                            <button class="uk-button uk-button-danger uk-border-rounded" type="sumbit">
                                                 Supprimer
                                             </button>
                                         </div>
@@ -301,14 +328,22 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                     </thead>
                                     <tbody>
                                     <?php
+                                    $sql_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Active_Monitors)";
+                                    $result_monitors = mysqli_query($conn, $sql_monitors);
+
                                     if ($result_monitors) {
                                         while ($row = mysqli_fetch_assoc($result_monitors)) {
                                             echo "<tr>";
                                             if ($is_tech) {
                                                 echo "<td>
-                                                    <button class='uk-button uk-button-small uk-button-primary uk-border-rounded'>Modifier</button>
-                                                    <button class='uk-button uk-button-small uk-button-danger uk-border-rounded'>Supprimer</button>
-                                                </td>";
+                
+                <a href='modifier_ecran.php?serial=" . urlencode($row['serial']) . "' 
+                   class='uk-button uk-button-small uk-button-primary uk-border-rounded'>
+                   Modifier
+                </a>
+                                                        
+                <button class='uk-button uk-button-small uk-button-danger uk-border-rounded'>Supprimer</button>
+            </td>";
                                             }
                                             echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
                                             echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
@@ -343,62 +378,88 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                 </form>
                                 <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
                                     <h2 class="uk-card-title sansation-regular">Ajouter un Écran</h2>
-                                    <form class="uk-form-stacked">
+                                    <form class="uk-form-stacked" action="ajout_ecran_formulaire.php" method="post">
                                         <div class="uk-grid-small uk-child-width-1-3@s uk-grid">
                                             <div>
                                                 <label class="uk-form-label" for="serial_monitor">Numéro de
                                                     Série</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="serial_monitor"
+                                                    <input class="uk-input" type="text" name="serial_monitor" id="serial_monitor"
                                                            placeholder="Numéro de Série">
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <label class="uk-form-label"
-                                                       for="manufacturer_monitor">Constructeur</label>
+                                                       for="manufacturer_select">Constructeur</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="manufacturer_monitor"
-                                                           placeholder="Constructeur">
+
+                                                    <div class="uk-form-controls">
+                                                        <select class="uk-select" id="manufacturer_select"
+                                                                name="manufacturer" required>
+
+                                                            <option value="">-- Sélectionnez un constructeur --</option>
+
+                                                            <?php
+
+                                                            $sql_manufacturers = "SELECT name FROM Manufacturers ORDER BY name";
+                                                            $result_manufacturers = mysqli_query($conn, $sql_manufacturers);
+                                                            if (mysqli_num_rows($result_manufacturers) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($result_manufacturers)) {
+
+                                                                    $manufacturer_name = htmlspecialchars($row['name']);
+
+
+                                                                    echo "<option value=\"$manufacturer_name\">$manufacturer_name</option>";
+                                                                }
+                                                            }
+
+
+                                                            mysqli_free_result($result_manufacturers);
+                                                            ?>
+
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
                                                 <label class="uk-form-label" for="model_monitor">Modèle</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="model_monitor"
+                                                    <input class="uk-input" type="text" name="model_monitor" id="model_monitor"
                                                            placeholder="Modèle">
                                                 </div>
                                             </div>
                                             <div>
                                                 <label class="uk-form-label" for="size_inch">Dimensions (pouces)</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="size_inch"
+                                                    <input class="uk-input" type="text" name="size_inch" id="size_inch"
                                                            placeholder="Dimensions">
                                                 </div>
                                             </div>
                                             <div>
                                                 <label class="uk-form-label" for="resolution">Résolution</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="resolution"
+                                                    <input class="uk-input" type="text" name="resolution" id="resolution"
                                                            placeholder="Résolution">
                                                 </div>
                                             </div>
                                             <div>
                                                 <label class="uk-form-label" for="connection">Connection</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="connection"
+                                                    <input class="uk-input" type="text" name="connection" id="connection"
                                                            placeholder="Connection">
                                                 </div>
                                             </div>
                                             <div>
                                                 <label class="uk-form-label" for="attached_to">Machine Associée</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" id="attached_to"
+                                                    <input class="uk-input" type="text" name="attached_to" id="attached_to"
                                                            placeholder="Machine Associée">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="uk-margin-top">
-                                            <button class="uk-button uk-button-primary uk-border-rounded" type="button">
+                                            <button class="uk-button uk-button-primary uk-border-rounded" type="submit">
                                                 Ajouter
                                             </button>
                                         </div>
@@ -413,17 +474,17 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                             <div class="collapsible-content">
                                 <div class="uk-margin-medium-top uk-card uk-card-default uk-card-body uk-width-1-1">
                                     <h2 class="uk-card-title sansation-regular">Supprimer un Écran</h2>
-                                    <form class="uk-form-stacked">
+                                    <form class="uk-form-stacked" method="POST" action="suppression_ecran.php">
                                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                                             <div>
                                                 <label class="uk-form-label">Numéro de Série</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" placeholder="DMXXXXXXX">
+                                                    <input class="uk-input" type="text" name="serial_monitors" id="serial_monitors" placeholder="DMXXXXXXX">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="uk-margin-top">
-                                            <button class="uk-button uk-button-danger uk-border-rounded" type="button">
+                                            <button class="uk-button uk-button-danger uk-border-rounded" type="sumbit">
                                                 Supprimer
                                             </button>
                                         </div>

@@ -15,22 +15,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = mysqli_prepare($conn, $sql);
 
     if (!$stmt) {
-        echo "Erreur dans la préparation de la requête.";
+        $message_echec = "Erreur dans la préparation de la requête.";
         mysqli_close($conn);
+        header("Location: formulaire.php?error=" . urlencode($message_echec));
         exit;
     }
 
     if (!mysqli_stmt_bind_param($stmt, "s", $user)) {
-        echo "Erreur de liaison des paramètres.";
+        $message_echec = "Erreur de liaison des paramètres.";
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
+        header("Location: formulaire.php?error=" . urlencode($message_echec));
+
         exit;
     }
 
     if (!mysqli_stmt_execute($stmt)) {
-        echo "Erreur d'exécution de la requête.";
+        $message_echec = "Erreur d'exécution de la requête.";
+
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
+        header("Location: formulaire.php?error=" . urlencode($message_echec));
+
         exit;
     }
 
@@ -54,10 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             exit;
         } else {
-            echo "Mot de passe incorrect.";
+            $message_echec = "Mot de passe incorrect.";
+            header("Location: formulaire.php?error=" . urlencode($message_echec));
         }
     } else {
-        echo "Utilisateur introuvable.";
+        $message_echec = "Identifiant ou mot de passe incorrect.";
+        header("Location: formulaire.php?error=" . urlencode($message_echec));
+        exit;
     }
 
     mysqli_stmt_close($stmt);

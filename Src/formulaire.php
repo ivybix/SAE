@@ -1,3 +1,10 @@
+<?php
+$error_message = null;
+
+if (isset($_GET['error'])) {
+    $error_message = htmlspecialchars($_GET['error']);
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,6 +15,7 @@
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="CSS/uikit.css" />
     <link rel="stylesheet" href="CSS/uikit-rtl.css" />
+    <script src="/Ressources/js/uikit.js"></script>
 
     <title>Connexion InkWare</title>
 </head>
@@ -21,6 +29,12 @@
         <h1 class="sansation-bold">Connexion</h1>
         <p class="sansation-regular-italic">Connectez-vous pour accéder à votre espace.</p>
 
+        <?php if ($error_message): ?>
+            <div class="uk-alert-danger uk-width-1-3@s uk-align-center uk-margin-medium" uk-alert style="background: #8F1E24">
+                <a class="uk-alert-close" uk-close></a>
+                <p><?= $error_message ?></p>
+            </div>
+        <?php endif; ?>
         <form id="loginForm" class="uk-form-stacked uk-width-1-3@s uk-align-center uk-box-shadow-small uk-padding-small  uk-border-rounded"
               action="login.php" method="post">
 
