@@ -12,7 +12,7 @@ endif;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
     <title>Administration Système - Logs</title>
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="CSS/uikit.css" />
@@ -30,14 +30,18 @@ endif;
         <h3 class="sansation-regular">Filtres</h3>
         <form class="uk-grid-small" uk-grid>
             <div class="uk-width-1-4@s">
-                <input class="uk-input" type="date" placeholder="Date">
+                <label>
+                    <input class="uk-input" type="date" placeholder="Date">
+                </label>
             </div>
             <div class="uk-width-1-4@s">
-                <select class="uk-select">
-                    <option>Tous les utilisateurs</option>
-                    <option>adminweb</option>
-                    <option>tech1</option>
-                </select>
+                <label>
+                    <select class="uk-select">
+                        <option>Tous les utilisateurs</option>
+                        <option>adminweb</option>
+                        <option>tech1</option>
+                    </select>
+                </label>
             </div>
             <div class="uk-width-1-4@s">
                 <button class="uk-button uk-button-primary">Filtrer</button>

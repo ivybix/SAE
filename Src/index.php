@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" href="CSS/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
     <link rel="stylesheet" href="CSS/uikit.css"/>
     <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
 

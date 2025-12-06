@@ -28,7 +28,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
     <title>Inventaire - Espace Technicien</title>
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="CSS/uikit.css"/>
@@ -290,7 +290,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                             </div>
                                         </div>
                                         <div class="uk-margin-top">
-                                            <button class="uk-button uk-button-danger uk-border-rounded" type="sumbit">
+                                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit">
                                                 Supprimer
                                             </button>
                                         </div>
@@ -479,12 +479,12 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                             <div>
                                                 <label class="uk-form-label">Numéro de Série</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" name="serial_monitors" id="serial_monitors" placeholder="DMXXXXXXX">
+                                                    <label for="serial_monitors"></label><input class="uk-input" type="text" name="serial_monitors" id="serial_monitors" placeholder="DMXXXXXXX">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="uk-margin-top">
-                                            <button class="uk-button uk-button-danger uk-border-rounded" type="sumbit">
+                                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit">
                                                 Supprimer
                                             </button>
                                         </div>

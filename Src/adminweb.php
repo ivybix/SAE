@@ -38,11 +38,11 @@ if (isset($_GET['success'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
     <title>Administration Web - Gestion</title>
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="CSS/uikit.css" />
-    <script src="/Ressources/js/uikit.js"></script>
+    <script src="Ressources/js/uikit.js"></script>
     <link rel="stylesheet" href="CSS/uikit-rtl.css" />
 </head>
 <body>
