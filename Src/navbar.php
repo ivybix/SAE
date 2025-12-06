@@ -16,7 +16,7 @@ $is_adminsystem = ($_SESSION['role']) == 'sysadmin';
                 <ul class="uk-navbar-nav menu">
                     <li>
                         <a class="uk-navbar-item uk-logo" href="index.php" target="_self" aria-label="Acceuil">
-                            <img src="/Ressources/logo-nav.ico" alt="Logo InkWare (Acceuil)" style="height: 40px;">
+                            <img src="Ressources/logo-nav2.ico" alt="Logo InkWare (Acceuil)" style="height: 40px;">
                         </a>
                     </li>
 
