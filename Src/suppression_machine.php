@@ -1,58 +1,47 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {
     die("Connexion échouée : " . mysqli_connect_error());
-
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $serial_device = $_POST['serial_device'];
 
     $check_sql = "SELECT serial FROM Active_Devices WHERE serial = ?";
-    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt = mysqli_prepare($conn, $check_sql);
 
     if ($check_stmt === false) {
-        echo "Erreur de préparation de la vérification : " . $conn->error;
         mysqli_close($conn);
-
         header("location: inventaire.php");
         exit;
     }
 
-    $check_stmt->bind_param("s", $serial_device);
-    $check_stmt->execute();
-    $check_stmt->store_result();
+    mysqli_stmt_bind_param($check_stmt, "s", $serial_device);
+    mysqli_stmt_execute($check_stmt);
+    mysqli_stmt_store_result($check_stmt);
 
-    if ($check_stmt->num_rows == 0) {
-        echo "Erreur : Aucune machine ne possède ce numéro de série.";
-        $check_stmt->close();
+    if (mysqli_stmt_num_rows($check_stmt) == 0) {
+        mysqli_stmt_close($check_stmt);
         mysqli_close($conn);
-
         header("location: inventaire.php");
         exit;
     }
 
-    $check_stmt->close();
+    mysqli_stmt_close($check_stmt);
 
-    $sql = "DELETE FROM Active_Devices WHERE serial = ?";
-    $stmt = $conn->prepare($sql);
+    $insert_sql = "INSERT INTO Waiting_Devices (serial, name) SELECT serial, name FROM Active_Devices WHERE serial = ?";
+    $insert_stmt = mysqli_prepare($conn, $insert_sql);
 
-    if ($stmt === false) {
-        echo "Erreur de préparation de la requête de suppression : " . $conn->error;
+    if ($insert_stmt === false) {
+
     } else {
-        $stmt->bind_param("s", $serial_device);
+        mysqli_stmt_bind_param($insert_stmt, "s", $serial_device);
 
-        if ($stmt->execute()) {
-            echo "Machine supprimée avec succès.";
-        } else {
-            echo "Erreur lors de la suppression : " . $stmt->error;
+        if (mysqli_stmt_execute($insert_stmt)) {
+            echo "Machine supprimée avec succès (en attente de confirmation par l'administrateur web)";
         }
-        $stmt->close();
+        mysqli_stmt_close($insert_stmt);
     }
 }
 

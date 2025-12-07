@@ -9,17 +9,17 @@ if (!$conn) {
     die("Connexion échouée");
 }
 
-$sql_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Active_Devices)";
+$sql_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Active_Devices) AND serial NOT IN (SELECT serial FROM Waiting_Devices)"; // Correction de NOT IN (SELECT serial FROM Waiting_Devices)
 $result_devices = mysqli_query($conn, $sql_devices);
 
-$sql_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Active_Monitors)";
+$sql_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Active_Monitors) AND serial NOT IN (SELECT serial FROM Waiting_Monitors)"; // Correction de NOT IN (SELECT serial FROM Waiting_Monitors)
 $result_monitors = mysqli_query($conn, $sql_monitors);
 
-$sql_retired_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Retired_Devices)";
-$result_retired_devices = mysqli_query($conn, $sql_retired_devices);
+$sql_waiting_devices = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Waiting_Devices)";
+$result_waiting_devices = mysqli_query($conn, $sql_waiting_devices);
 
-$sql_retired_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Retired_Monitors)";
-$result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
+$sql_waiting_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Waiting_Monitors)";
+$result_waiting_monitors = mysqli_query($conn, $sql_waiting_monitors);
 
 
 ?>
@@ -285,7 +285,7 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                             <div>
                                                 <label class="uk-form-label">Numéro de Série</label>
                                                 <div class="uk-form-controls">
-                                                    <input class="uk-input" type="text" name="serial_devices" id="serial_devices" placeholder="SNXXXXXXX">
+                                                    <label for="serial_devices"></label><input class="uk-input" type="text" name="serial_devices" id="serial_devices" placeholder="SNXXXXXXX">
                                                 </div>
                                             </div>
                                         </div>
@@ -328,9 +328,6 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $sql_monitors = "SELECT * FROM Monitors WHERE serial IN (SELECT serial FROM Active_Monitors)";
-                                    $result_monitors = mysqli_query($conn, $sql_monitors);
-
                                     if ($result_monitors) {
                                         while ($row = mysqli_fetch_assoc($result_monitors)) {
                                             echo "<tr>";
@@ -497,100 +494,103 @@ $result_retired_monitors = mysqli_query($conn, $sql_retired_monitors);
             </div>
         </div>
     </div>
-    <div class="uk-margin-medium-bottom collapsible-section">
-        <input type="checkbox" id="toggle-rebut" class="toggle-checkbox" checked>
-        <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
-        <div class="collapsible-content">
-            <div class="uk-margin-medium-bottom collapsible-section">
-                <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
-                <label for="toggle-rebut-machines" class="toggle-label sansation-regular">Machines</label>
-                <div class="collapsible-content">
-                    <div class="uk-overflow-auto" style="max-height: 300px;">
-                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                            <thead>
-                            <tr>
-                                <?php if ($is_tech): ?>
-                                    <th>Actions</th><?php endif; ?>
-                                <th id="name_rebut">Nom</th>
-                                <th id="serial_device_rebut">Numéro de Série</th>
-                                <th id="manufacturer_device_rebut">Constructeur</th>
-                                <th id="model_device_rebut">Modèle</th>
-                                <th id="os_rebut">OS</th>
-                                <th id="domain_rebut">Domaine</th>
-                                <th id="location_rebut">Location</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            if ($result_retired_devices) {
-                                while ($row = mysqli_fetch_assoc($result_retired_devices)) {
-                                    echo "<tr>";
-                                    if ($is_tech) {
-                                        echo "<td class='uk-width-small'>
+
+    <?php if ($is_tech): ?>
+        <div class="uk-margin-medium-bottom collapsible-section">
+            <input type="checkbox" id="toggle-rebut" class="toggle-checkbox" checked>
+            <label for="toggle-rebut" class="toggle-label sansation-regular">Matériel au Rebut</label>
+            <div class="collapsible-content">
+                <div class="uk-margin-medium-bottom collapsible-section">
+                    <input type="checkbox" id="toggle-rebut-machines" class="toggle-checkbox" checked>
+                    <label for="toggle-rebut-machines" class="toggle-label sansation-regular">Machines</label>
+                    <div class="collapsible-content">
+                        <div class="uk-overflow-auto" style="max-height: 300px;">
+                            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                                <thead>
+                                <tr>
+                                    <?php if ($is_tech): ?>
+                                        <th>Actions</th><?php endif; ?>
+                                    <th id="name_rebut">Nom</th>
+                                    <th id="serial_device_rebut">Numéro de Série</th>
+                                    <th id="manufacturer_device_rebut">Constructeur</th>
+                                    <th id="model_device_rebut">Modèle</th>
+                                    <th id="os_rebut">OS</th>
+                                    <th id="domain_rebut">Domaine</th>
+                                    <th id="location_rebut">Location</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                if ($result_waiting_devices) {
+                                    while ($row = mysqli_fetch_assoc($result_waiting_devices)) {
+                                        echo "<tr>";
+                                        if ($is_tech) {
+                                            echo "<td class='uk-width-small'>
                                             <button class='uk-button uk-button-small uk-button-secondary uk-border-rounded'>Restaurer</button>
                                         </td>";
+                                        }
+                                        echo "<td>" . (isset($row['name']) ? $row['name'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['model']) ? $row['model'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['os']) ? $row['os'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['domain']) ? $row['domain'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['location']) ? $row['location'] : '') . "</td>";
+                                        echo "</tr>";
                                     }
-                                    echo "<td>" . (isset($row['name']) ? $row['name'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['model']) ? $row['model'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['os']) ? $row['os'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['domain']) ? $row['domain'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['location']) ? $row['location'] : '') . "</td>";
-                                    echo "</tr>";
                                 }
-                            }
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="uk-margin-medium-bottom collapsible-section">
-                <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
-                <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
-                <div class="collapsible-content">
-                    <div class="uk-overflow-auto" style="max-height: 300px;">
-                        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                            <thead>
-                            <tr>
-                                <?php if ($is_tech): ?>
-                                    <th>Actions</th><?php endif; ?>
-                                <th id="serial_monitor_rebut">Numéro de Série</th>
-                                <th id="manufacturer_monitor_rebut">Constructeur</th>
-                                <th id="model_monitor_rebut">Modèle</th>
-                                <th id="size_inch_rebut">Dimensions_pouces</th>
-                                <th id="resolution_rebut">Résolution</th>
-                                <th id="attached_to_rebut">Machine Associée</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            if ($result_retired_monitors) {
-                                while ($row = mysqli_fetch_assoc($result_retired_monitors)) {
-                                    echo "<tr>";
-                                    if ($is_tech) {
-                                        echo "<td class='uk-width-small'>
+                <div class="uk-margin-medium-bottom collapsible-section">
+                    <input type="checkbox" id="toggle-rebut-ecrans" class="toggle-checkbox" checked>
+                    <label for="toggle-rebut-ecrans" class="toggle-label sansation-regular">Écrans</label>
+                    <div class="collapsible-content">
+                        <div class="uk-overflow-auto" style="max-height: 300px;">
+                            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                                <thead>
+                                <tr>
+                                    <?php if ($is_tech): ?>
+                                        <th>Actions</th><?php endif; ?>
+                                    <th id="serial_monitor_rebut">Numéro de Série</th>
+                                    <th id="manufacturer_monitor_rebut">Constructeur</th>
+                                    <th id="model_monitor_rebut">Modèle</th>
+                                    <th id="size_inch_rebut">Dimensions_pouces</th>
+                                    <th id="resolution_rebut">Résolution</th>
+                                    <th id="attached_to_rebut">Machine Associée</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                if ($result_waiting_monitors) {
+                                    while ($row = mysqli_fetch_assoc($result_waiting_monitors)) {
+                                        echo "<tr>";
+                                        if ($is_tech) {
+                                            echo "<td class='uk-width-small'>
                                             <button class='uk-button uk-button-small uk-button-secondary uk-border-rounded'>Restaurer</button>
                                         </td>";
+                                        }
+                                        echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['model']) ? $row['model'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['size_inch']) ? $row['size_inch'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['resolution']) ? $row['resolution'] : '') . "</td>";
+                                        echo "<td>" . (isset($row['attached_to']) ? $row['attached_to'] : '') . "</td>";
+                                        echo "</tr>";
                                     }
-                                    echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['model']) ? $row['model'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['size_inch']) ? $row['size_inch'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['resolution']) ? $row['resolution'] : '') . "</td>";
-                                    echo "<td>" . (isset($row['attached_to']) ? $row['attached_to'] : '') . "</td>";
-                                    echo "</tr>";
                                 }
-                            }
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>
 </body>
 </html>
