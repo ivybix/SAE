@@ -19,6 +19,7 @@ $result = mysqli_query($conn, $sql);
 
 if ($result === false) {
     $error_message = "Erreur lors de la récupération des utilisateurs : " . mysqli_error($conn);
+
 } else {
     $user_count = mysqli_num_rows($result);
 }
@@ -37,46 +38,30 @@ if (isset($_GET['success'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
     <title>Administration Web - Gestion</title>
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css" />
+    <link rel="stylesheet" href="CSS/uikit.css"/>
     <script src="Ressources/js/uikit.js"></script>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css" />
+    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
 </head>
 <body>
 
 <?php include_once 'navbar.php'; ?>
 
 <div class="uk-container uk-margin-medium-top">
-    <?php if ($error_message): ?>
-        <div class="uk-alert-danger uk-width-1-3@s uk-align-center uk-margin-medium" uk-alert style="background: #8F1E24">
-            <a class="uk-alert-close" uk-close></a>
-            <p><?= $error_message ?></p>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($success): ?>
-        <div class="uk-alert uk-width-1-3@s uk-align-center uk-margin-medium" uk-alert style="background: darkgreen">
-            <a class="uk-alert-close" uk-close></a>
-            <p><?= $success ?></p>
-        </div>
-    <?php endif; ?>
+    <?php include_once 'alerts.php'; ?>
 
     <h1 class="uk-text-center sansation-bold">Espace Administrateur Web</h1>
-
 
 
     <div class="uk-container uk-margin-top">
         <h1>Gestion des Utilisateurs</h1>
 
-        <?php if (isset($error_message)): ?>
-            <div class="uk-alert-danger" uk-alert>
-                <p><?php echo $error_message; ?></p>
-            </div>
-        <?php elseif ($user_count > 0): ?>
-            <p>Nombre total d'utilisateurs : **<?php echo $user_count; ?>**</p>
+        <?php if ($user_count > 0): ?>
+            <p>Nombre total d'utilisateurs : <b class="sansation-bold"> <?php echo $user_count; ?> </b>
+            </p>
 
             <table class="uk-table uk-table-striped uk-table-hover uk-table-responsive uk-table-divider">
                 <thead>
@@ -94,13 +79,17 @@ if (isset($_GET['success'])) {
                 while ($row = mysqli_fetch_assoc($result)):
                     ?>
                     <tr>
-                        <td data-label="Identifiant"><strong><?php echo htmlspecialchars($row['login']); ?></strong></td>
+                        <td data-label="Identifiant"><strong><?php echo htmlspecialchars($row['login']); ?></strong>
+                        </td>
                         <td data-label="Rôle"><?php echo htmlspecialchars($row['role']); ?></td>
                         <td data-label="Date de création"><?php echo htmlspecialchars($row['creation_date']); ?></td>
                         <td data-label="Heure de création"><?php echo htmlspecialchars($row['creation_time']); ?></td>
                         <td data-label="Actions">
-<!--                            <a href="modifier.php?login=--><?php //echo urlencode($row['login']); ?><!--" class="uk-button uk-button-small uk-button-primary">Modifier</a>-->
-                            <a href="supprimer.php?login=<?php echo urlencode($row['login']); ?>" class="uk-button uk-button-small uk-button-danger">Supprimer</a>
+
+                            <a href="modifier_tech.php?login=<?php echo urlencode($row['login']); ?>"
+                               class="uk-button uk-button-small uk-button-primary">Modifier</a>
+                            <a href="supprimer_tech.php?login=<?php echo urlencode($row['login']); ?>"
+                               class="uk-button uk-button-small uk-button-danger">Supprimer</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -147,7 +136,8 @@ if (isset($_GET['success'])) {
                 <h3 class="uk-card-title">Constructeurs</h3>
                 <form class="uk-flex uk-margin-top" method="POST" action="ajout_manufacturer.php">
                     <label>
-                        <input class="uk-input uk-width-expand" type="text" name="manufacturer" id="manufacturer" placeholder="Nouveau Constructeur">
+                        <input class="uk-input uk-width-expand" type="text" name="manufacturer" id="manufacturer"
+                               placeholder="Nouveau Constructeur">
                     </label>
                     <button class="uk-button uk-button-secondary uk-margin-left">Ajouter</button>
                 </form>
@@ -157,7 +147,8 @@ if (isset($_GET['success'])) {
 
     <div class="uk-margin-medium-top uk-card uk-card-secondary uk-card-body">
         <h3 class="uk-card-title">Zone de Rebut</h3>
-        <p>Verrouiller la liste du rebut empêche tout nouvel ajout ou modification par les techniciens pour préparer l'exportation définitive.</p>
+        <p>Verrouiller la liste du rebut empêche tout nouvel ajout ou modification par les techniciens pour préparer
+            l'exportation définitive.</p>
         <button class="uk-button uk-button-danger">Verrouiller la liste du rebut (Audit)</button>
         <button class="uk-button uk-button-default">Exporter CSV Rebut</button>
     </div>

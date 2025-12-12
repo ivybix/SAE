@@ -14,11 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_sql = "SELECT name FROM Manufacturers WHERE name = ?";
     $check_stmt = $conn->prepare($check_sql);
 
-    if ($check_stmt === false) {
-        echo "Erreur de préparation de la vérification : " . $conn->error;
+    if ($check_stmt === false) { 
         mysqli_close($conn);
 
-        header("location: adminweb.php");
+        header("location: adminweb.php?error=". urlencode("Erreur de préparation de la vérification : " . $conn->error));
         exit;
     }
 
@@ -26,12 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_stmt->execute();
     $check_stmt->store_result();
 
-    if ($check_stmt->num_rows > 0) {
-        echo "Erreur : Ce manufactureur existe déjà. Veuillez en choisir un autre.";
+    if ($check_stmt->num_rows > 0) { 
         $check_stmt->close();
         mysqli_close($conn);
 
-        header("location: adminweb.php");
+        header("location: adminweb.php?error=".urlencode( "Erreur : Ce manufactureur existe déjà. Veuillez en choisir un autre."));
         exit;
     }
 
@@ -41,20 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
-        echo "Erreur de préparation de la requête d'insertion : " . $conn->error;
+        header("location: adminweb.php?error=".urlencode("Erreur de préparation de la requête d'insertion : " . $conn->error));;
     } else {
         $stmt->bind_param("s", $name);
 
         if ($stmt->execute()) {
-            echo "Manufactureur ajouté avec succès.";
+            header("location: adminweb.php?success=".urlencode( "Manufactureur ajouté avec succès."));;
         } else {
-            echo "Erreur lors de l'insertion : " . $stmt->error;
+            header("location: adminweb.php?error=".urlencode( "Erreur lors de l'insertion : " . $stmt->error));
         }
         $stmt->close();
     }
 }
 
 mysqli_close($conn);
-
-header("location: adminweb.php");
+ 
 ?>

@@ -31,6 +31,9 @@ $is_adminsystem = ($_SESSION['role']) == 'sysadmin';
                             Inventaire
                         </a>
                     </li>
+                    <?php if ($is_logged_in): ?>
+                    <li class="menu-item uk-active"><a href="stats.php">Statistiques</a></li>
+                    <?php endif;?>
                     <?php if ($is_adminweb_page): ?>
                         <li class="menu-item uk-active"><a href="adminweb.php">Gestion Web</a></li>
 
