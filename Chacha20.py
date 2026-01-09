@@ -73,10 +73,9 @@ def generer_keystream(matrice_entree,compteur):
 
 def chiffrer(message):
     compteur = 0
-    matrice = remplissage_matrice(cle, nonce)
+    matrice_init = remplissage_matrice(cle, nonce)
     message_bytes = message.encode('utf-8')
     bout_message_liste = []
-    matrice_init = list(matrice)
     for k in range(0, len(message_bytes), 64):
         bout_message = message_bytes[k:k+64]
         keystream = generer_keystream(matrice_init,compteur)
@@ -89,8 +88,7 @@ def chiffrer(message):
 def dechiffrer(message_chiffre):
     compteur = 0
     bout_message_liste = []
-    matrice = remplissage_matrice(cle,nonce)
-    matrice_init = list(matrice)
+    matrice_init = remplissage_matrice(cle,nonce)
     for k in range(0, len(message_chiffre), 64):
         bout_message = message_chiffre[k:k+64]
         keystream = generer_keystream(matrice_init,compteur)
@@ -102,4 +100,5 @@ def dechiffrer(message_chiffre):
 message_chiffre = chiffrer(message)
 print(message_chiffre)
 message_dechiffre = dechiffrer(message_chiffre)
+
 print(message_dechiffre)
