@@ -1,5 +1,5 @@
-import secrets
-import struct
+import secrets #Génération de clés sécurisées
+import struct #Concaténations
 
 message = "Salut je m'appelle Nicolas et j'écris un texte assez long pour tester les blocs !"
 cle = secrets.token_bytes(32) #Génère une clé de 32 octets
@@ -153,6 +153,7 @@ def dechiffrer(message_chiffre):
 message_chiffre = chiffrer(message)
 print(message_chiffre)
 message_dechiffre = dechiffrer(message_chiffre)
+
 
 
 print(message_dechiffre)
