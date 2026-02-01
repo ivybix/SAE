@@ -2,7 +2,7 @@
 
 Ce projet a été réalisé dans le cadre de la **SAÉ Cryptographie** (IUT de Vélizy). Il vise à comprendre et implémenter l'algorithme de chiffrement par flux **ChaCha20** selon la spécification **RFC 8439**.
 
-## 👥 L'Équipe
+## L'Équipe
 
 * **ABOUALOU Jihan**
 * **ALILECHE Samy**
@@ -10,7 +10,7 @@ Ce projet a été réalisé dans le cadre de la **SAÉ Cryptographie** (IUT de V
 * **LE BRETON Nicolas**
 * **PERONI Dylan**
 
-## 📂 Contenu du Dépôt
+## Contenu du Dépôt
 
 Le projet contient deux approches distinctes de l'algorithme :
 
@@ -28,7 +28,7 @@ Il s'agit de la version "production", utilisant la bibliothèque standardisée *
 * **Fonctionnalités :** Génération d'aléatoire cryptographique sécurisé (`Crypto.Random`) et utilisation optimisée de l'algorithme.
 * **Objectif :** Comparer notre version manuelle avec une implémentation professionnelle et sécurisée contre les attaques par canaux auxiliaires.
 
-## ⚙️ Installation
+## Installation
 
 ### Prérequis
 
@@ -43,7 +43,7 @@ pip install pycryptodome
 
 ```
 
-## 🚀 Utilisation
+## Utilisation
 
 ### Tester la version manuelle
 
@@ -59,7 +59,7 @@ python chacha20_lib.py
 
 ```
 
-## 📝 Détails Techniques
+## Détails Techniques
 
 * **Type de chiffrement :** Chiffrement par flux (Stream Cipher)
 * **Taille de clé :** 256 bits (32 octets)
