@@ -16,9 +16,9 @@ Le projet contient deux approches distinctes de l'algorithme :
 
 ### 1. `Chacha20.py` (Implémentation Manuelle)
 
-C'est le cœur pédagogique du projet. Il s'agit d'une implémentation "from scratch" sans bibliothèque cryptographique externe.
+C'est le cœur pédagogique du projet. Il s'agit d'une implémentation sans bibliothèque cryptographique externe.
 
-* **Fonctionnalités :** Gestion de la matrice d'état 4x4, fonctions de rotation (ROTL), Quarter Rounds, et génération du Keystream via XOR.
+* **Fonctionnalités :** Gestion de la matrice d'état 4x4, fonctions de rotation , Quarter Rounds, et génération du Keystream via XOR.
 * **Objectif :** Démontrer la compréhension mathématique et algorithmique de ChaCha20.
 
 ### 2. `chacha20_lib.py` (Implémentation PyCryptodome)
