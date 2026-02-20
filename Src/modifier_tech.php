@@ -1,4 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+
+ini_set('display_startup_errors', 1);
+
+error_reporting(E_ALL);
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -21,12 +26,15 @@ $login_original = $_SESSION['loginOriginal'];
 $user_data = null;
 $error_message = null;
 $success_message = null;
+$pass = null;
 
 $conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {
     die("Connexion à la base de données échouée : " . mysqli_connect_error());
 }
+
+
 
 $sql_fetch = "SELECT login, role, password, creation_date, creation_time FROM Users WHERE login = ?";
 $stmt_fetch = $conn->prepare($sql_fetch);
@@ -40,6 +48,26 @@ if ($stmt_fetch === false) {
 
     if ($result->num_rows === 1) {
         $user_data = $result->fetch_assoc();
+        // Récupérer le nonce
+        $sql = "SELECT login, nonce FROM Nonces WHERE login = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        if (!$stmt) { header("Location: formulaire.php?error=" . urlencode("Erreur requête")); exit; }
+        mysqli_stmt_bind_param($stmt, "s", $user_data['login']);
+        mysqli_stmt_execute($stmt);
+        $result_nonce = mysqli_stmt_get_result($stmt);
+        if ($row_nonce = mysqli_fetch_assoc($result_nonce)) {
+            $nonce = $row_nonce['nonce'];
+
+            // Appel du script Python pour le mot de passe
+            shell_exec("source /home/sae2025/venv/bin/activate");
+            $cmd = "/var/www/venv/bin/python /var/www/rpi11/Ressources/py/decrypt.py "
+                    . escapeshellarg($user_data['password']) . " " . escapeshellarg($nonce) ." 2>&1";
+            $output = shell_exec($cmd);
+            $pass = trim($output);
+        } else {
+            header("Location: adminweb.php?error=" . urlencode("Identifiant inconnu dans la table des clés"));
+            exit;
+        }
         if ($user_data['role'] == 'adminweb' ) {
             $error_message = "Vous ne pouvez pas modifier d'admin web ou de sys admin !";
             unset($_SESSION['loginOriginal']);
@@ -78,18 +106,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['old_login'])) {
     }
 
 
-    $sql_update = "UPDATE Users SET login=?, role=? WHERE login=?";
+
+    $sql_update = "UPDATE Users SET login=?, role=?, password=? WHERE login=?";
 
     $stmt_update = $conn->prepare($sql_update);
 
     if ($stmt_update === false) {
         $error_message = "Erreur de préparation de l'UPDATE : " . $conn->error;
     } else {
-        $stmt_update->bind_param("sss",
-            $new_login, $new_role, $old_login
+        $sql = "SELECT login, nonce FROM Nonces WHERE login = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        if (!$stmt) { header("Location: formulaire.php?error=" . urlencode("Erreur requête")); exit; }
+        mysqli_stmt_bind_param($stmt, "s", $old_login);
+        mysqli_stmt_execute($stmt);
+        $result_nonce = mysqli_stmt_get_result($stmt);
+        if ($row_nonce = mysqli_fetch_assoc($result_nonce)) {
+            $nonce = $row_nonce['nonce'];
+
+            // Appel du script Python pour le mot de passe
+            shell_exec("source /home/sae2025/venv/bin/activate");
+            $cmd = "/var/www/venv/bin/python /var/www/rpi11/Ressources/py/modifier.py "
+                    . escapeshellarg($new_password) . " " . escapeshellarg($nonce) ." 2>&1";
+            $output = shell_exec($cmd);
+            $new_password = trim($output);
+        } else {
+            header("Location: adminweb.php?error=" . urlencode("Identifiant inconnu dans la table des clés"));
+            exit;
+        }
+
+
+
+
+        $stmt_update->bind_param("ssss",
+            $new_login, $new_role,$new_password, $old_login
         );
 
         if ($stmt_update->execute()) {
+
+
             $success_message = "Technicien '{$new_login}' mis à jour avec succès !";
 
             if ($new_login !== $old_login) {
@@ -120,12 +174,12 @@ mysqli_close($conn);
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
     <title>Modifier un technicien</title>
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css"/>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
+    <link rel="stylesheet" href="CSS/uikit.css">
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 </head>
 <body>
 
@@ -175,7 +229,7 @@ mysqli_close($conn);
                         <label class="uk-form-label" for="form-login">Mot de passe</label>
                         <div class="uk-form-controls">
                             <input class="uk-input uk-width-1-1" id="form-login" type="text" name="password"
-                                   value="<?= htmlspecialchars($user_data['password']) ?>" maxlength="50" required>
+                                   value="<?= htmlspecialchars($pass) ?>" maxlength="50" required>
                         </div>
                     </div>
                     <hr class="uk-margin-medium">
@@ -205,5 +259,7 @@ mysqli_close($conn);
 
 </div>
 
+<?php include_once "footer.php"; ?>
 </body>
+
 </html>

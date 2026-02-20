@@ -7,6 +7,31 @@
     color: #F2E5D5 !important;
 }
 
+/*
+-------------------
+*/
+/* Style global du footer */
+.custom-footer {
+    background-color: #01394F !important; /* Couleur de votre navbar */
+    border-top: 2px solid #76D7C4; /* Ligne de rappel de la couleur d'accentuation */
+    margin-top: 60px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+
+.footer-links li a:hover::after {
+    width: 100%;
+}
+
+/* Style de la barre de séparation */
+.divider-footer {
+    border-top: 1px solid rgba(242, 229, 213, 0.1);
+}
+/*
+------------
+*/
 /* Règle de l'alerte UIkit pour forcer la couleur de fond et la bordure */
 .uk-alert-danger.uk-alert {
     background-color: #8F1E24 !important; /* La couleur de fond que vous souhaitez */
@@ -14,13 +39,18 @@
     border-color: #8F1E24 !important; /* Assure que la bordure utilise également la couleur du fond */
 }
 
-/* Règle spécifique pour cibler le texte (p) et l'icône de fermeture,
-   nécessaire pour contrer la spécificité d'UIkit sur ces éléments internes */
 .uk-alert-danger.uk-alert p,
 .uk-alert-danger.uk-alert .uk-alert-close {
     color: #F2E5D5 !important;
 }
+.div_image_stats {
+    justify-content: center;
+    display: flex;
 
+}
+.image_stats {
+    
+}
 .uk-card-default {
 
     background-color: #01394F!important;
@@ -172,7 +202,7 @@ h1, h2, h3, h4, h5, h6, p , label {
     vertical-align: middle;
 }
 
-.uk-table td .uk-button-primary {
+.uk-table td .uk-button-primary , .uk-table td .uk-button {
     background-color: #76D7C4;
     color: #012E40;
     width: 100px;
@@ -188,6 +218,12 @@ h1, h2, h3, h4, h5, h6, p , label {
 .uk-table td .uk-button-secondary {
     background-color: #344B55;
     color: #F2E5D5;
+    width: 100px;
+    border: none;
+}
+#filtrer_button, #reset_button {
+    background-color: #344B55 !important;
+    color: #F2E5D5 !important;
     width: 100px;
     border: none;
 }

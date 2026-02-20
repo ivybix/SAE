@@ -88,13 +88,13 @@ if (isset($_POST['login'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
     <title>Administration Web - Gestion</title>
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css"/>
+    <link rel="stylesheet" href="CSS/uikit.css">
     <script src="Ressources/js/uikit.js"></script>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 </head>
 <body>
 
@@ -127,5 +127,8 @@ if (isset($_POST['login'])) {
 
     </article>
 </div>
+<?php include_once "footer.php"; ?>
 </body>
+
+
 </html>

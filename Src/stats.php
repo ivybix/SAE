@@ -151,13 +151,13 @@ if (isset($_POST['btn_generer_pie_anciennete'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
     <title>Administration Web - Statistiques</title>
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css"/>
+    <link rel="stylesheet" href="CSS/uikit.css">
     <script src="Ressources/js/uikit.js"></script>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 </head>
 <body>
 
@@ -167,41 +167,37 @@ if (isset($_POST['btn_generer_pie_anciennete'])) {
     <?php include_once 'alerts.php'; ?>
     <h1 class="sansation uk-text-center"><span>Statistiques du Parc</span></h1>
 
-
+    <!-- Card for Graphical Analysis -->
     <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-animation-fade">
         <div class="uk-text-center">
 
-            <h3 class="sansation uk-card-title">Analyse Graphique</h3>
+            <h2 class="sansation uk-card-title">Analyse Graphique</h2>
+        </div>
+            <div class="uk-grid uk-child-width-1-2@m" >
 
-
-            <div class="uk-grid uk-child-width-1-2@m uk-text-center" uk-grid>
-
+                <!-- Graph 1 (Ancienneté) -->
                 <div>
                     <div class="uk-margin">
                         <img src="/Ressources/image_stat/stat1.webp"
                              alt="Graphique Statistique 1 : Répartition par ancienneté"
                              style="max-height: 400px; width: auto;">
                     </div>
-
-
-                    <h4 class="sansation-bold">Description de l'Ancienneté :</h4>
+                    <h3 class="sansation-bold">Description de l'Ancienneté :</h3>
                     <p class="sansation-regular">
-
                         Le camembert représente la répartition des machines en fonction de leur ancienneté,
                         calculée sur la base de leur date d'achat. L’objectif est de suivre l’évolution du parc
                         informatique au fil du temps et d'identifier les machines qui risquent d’être obsolètes.
                     </p>
                 </div>
 
+                <!-- Graph 2 (Temps de connexion) -->
                 <div class="uk-padding-remove-left@m uk-border-left@m" style="border-left: 1px solid white">
                     <div class="uk-margin">
                         <img src="/Ressources/image_stat/stat2.webp"
                              alt="Graphique Statistique 2 : Répartition par type"
                              style="max-height: 400px; width: auto;">
                     </div>
-
-                    <h4 class="sansation-bold">Description de la répartition des temps de connexion des utilisateurs
-                        :</h4>
+                    <h3 class="sansation-bold">Description de la répartition des temps de connexion des utilisateurs :</h3>
                     <p>
                         Cet histogramme représente la répartition des temps de connexion des utilisateurs.
                         L’objectif est d’offrir une vision claire des habitudes d’utilisation et d’identifier le niveau
@@ -210,36 +206,34 @@ if (isset($_POST['btn_generer_pie_anciennete'])) {
                 </div>
             </div>
 
-            <div class="uk-margin-large-top uk-border-top uk-padding-small " style="border-top: 1px solid white;">
-    <div class="uk-text-center"> 
-        <div class="uk-margin-medium"> 
-            <img src="/Ressources/image_stat/stat3.webp"
-                 alt="Graphique Statistique 3 : Répartition par type"
-                 style="max-height: 400px; width: auto;">
-        </div>
-
-        <h4 class="sansation-bold">Notre leaderboard :</h4>
-        <p>
-        On représente la synthèse sous la forme d’une grille composée de 4 rectangles. 3 en haut de la grille qui représentent dans l’ordre les statistiques suivantes :
-        </p><ul class="sansation-light"> 
-    <li> L'utilisateur avec la plus longue session. </li>
-    <li> L'utilisateurs avec le plus de connexions.</li>
-    <li> La machine avec le plus de connexions (identifiée par son adresse IP).</li>
-        </ul>
-        <p>
-Dans un second temps,  voir quelle machine est la plus usée et en même temps celle qui risque d’être dégradée plus vite.
- Aussi, cela pourrait permettre de visualiser les écrans les plus utilisés (ceux qui sont associés à la machine)
-
-Enfin, on implémente un grand rectangle en bas de la grille qui représente sous la forme d’un graphique les 5 utilisateurs avec la plus longue session en moyenne.
-
-
-        </p>
-    </div>
-</div>
+            <!-- Graph 3 (Leaderboard et usage des machines) -->
+            <div class="uk-margin-large-top uk-border-top uk-padding-small" style="border-top: 1px solid white;">
+                <div class="">
+                    <div class="uk-margin-medium">
+                        <img src="/Ressources/image_stat/stat3.webp"
+                             alt="Graphique Statistique 3 : Répartition par type"
+                             style="max-height: 400px; width: auto;">
+                    </div>
+                    <h3 class="sansation-bold">Notre leaderboard :</h3>
+                    <p>
+                        On représente la synthèse sous la forme d’une grille composée de 4 rectangles. 3 en haut de la grille qui représentent dans l’ordre les statistiques suivantes :
+                    </p>
+                    <ul class="sansation-light">
+                        <li> L'utilisateur avec la plus longue session. </li>
+                        <li> L'utilisateur avec le plus de connexions.</li>
+                        <li> La machine avec le plus de connexions (identifiée par son adresse IP).</li>
+                    </ul>
+                    <p>
+                        Dans un second temps, voir quelle machine est la plus usée et en même temps celle qui risque d’être dégradée plus vite.
+                        Aussi, cela pourrait permettre de visualiser les écrans les plus utilisés (ceux qui sont associés à la machine).
+                        Enfin, on implémente un grand rectangle en bas de la grille qui représente sous la forme d’un graphique les 5 utilisateurs avec la plus longue session en moyenne.
+                    </p>
+                </div>
+            </div>
 
         </div>
 
-
+        <!-- Button for sysadmin to generate report -->
         <?php if (($_SESSION['role']) == 'sysadmin'): ?>
             <div class="uk-flex uk-flex-center uk-margin-bottom">
                 <form method="post" action="stats.php">
@@ -251,108 +245,113 @@ Enfin, on implémente un grand rectangle en bas de la grille qui représente sou
             </div>
         <?php endif; ?>
     </div>
-</div>
-    <div class="uk-container uk-margin-medium-top">
-        <div class="uk-card uk-card-default uk-card-body">
-            <h1 class="sansation uk-text-center"><span>Statistiques du Parc (Machines)</span></h1>
-            <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par constructeur (Total
-                : <?php echo $total_machines; ?>)</h3>
-            <div class="uk-overflow-auto uk-margin-bottom-small" style="border-bottom: 3px solid white">
-                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                    <thead>
-                    <tr>
-                        <th>Constructeur</th>
-                        <th>Nombre de Machines</th>
-                        <th>Pourcentage (%)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($stats_constructeur as $stat): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
-                            <td><?php echo $stat['count']; ?></td>
-                            <td><?php echo $stat['percentage']; ?>%</td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par domaine (Total
-                : <?php echo $total_machines; ?>)</h3>
-            <div class="uk-overflow-auto uk-margin" style="border-bottom: 3px solid white">
-                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                    <thead>
-                    <tr>
-                        <th>Domaine</th>
-                        <th>Nombre de Machines</th>
-                        <th>Pourcentage (%)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($stats_domaine as $stat): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
-                            <td><?php echo $stat['count']; ?></td>
-                            <td><?php echo $stat['percentage']; ?>%</td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par localisation (Total
-                : <?php echo $total_machines; ?>)</h3>
-            <div class="uk-overflow-auto uk-margin">
-                <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-                    <thead>
-                    <tr>
-                        <th>Constructeur</th>
-                        <th>Nombre d'écrans</th>
-                        <th>Pourcentage (%)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($stats_localisation as $stat): ?>
 
-                        <tr>
-                            <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
-                            <td><?php echo $stat['count']; ?></td>
-                            <td><?php echo $stat['percentage']; ?>%</td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+
+<div class="uk-container uk-margin-medium-top">
+    <div class="uk-card uk-card-default uk-card-body">
+        <h2 class="sansation uk-text-center"><span>Statistiques du Parc (Machines)</span></h2>
+
+        <!-- Stats by Manufacturer -->
+        <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par constructeur (Total : <?php echo $total_machines; ?>)</h3>
+        <div class="uk-overflow-auto uk-margin-bottom-small" style="border-bottom: 3px solid white">
+            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                <thead>
+                <tr>
+                    <th>Constructeur</th>
+                    <th>Nombre de Machines</th>
+                    <th>Pourcentage (%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($stats_constructeur as $stat): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
+                        <td><?php echo $stat['count']; ?></td>
+                        <td><?php echo $stat['percentage']; ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Stats by Domain -->
+        <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par domaine (Total : <?php echo $total_machines; ?>)</h3>
+        <div class="uk-overflow-auto uk-margin" style="border-bottom: 3px solid white">
+            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                <thead>
+                <tr>
+                    <th>Domaine</th>
+                    <th>Nombre de Machines</th>
+                    <th>Pourcentage (%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($stats_domaine as $stat): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
+                        <td><?php echo $stat['count']; ?></td>
+                        <td><?php echo $stat['percentage']; ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Stats by Location -->
+        <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par localisation (Total : <?php echo $total_machines; ?>)</h3>
+        <div class="uk-overflow-auto uk-margin">
+            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                <thead>
+                <tr>
+                    <th>Constructeur</th>
+                    <th>Nombre d'écrans</th>
+                    <th>Pourcentage (%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($stats_localisation as $stat): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
+                        <td><?php echo $stat['count']; ?></td>
+                        <td><?php echo $stat['percentage']; ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
-<div class="uk-container uk-margin-medium-top">
-
-    <div class="uk-card uk-card-default uk-card-body">
-    <h1 class="sansation uk-text-center"><span>Statistiques du Parc (Écrans)</span></h1>
-    <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par constructeur (Total
-        : <?php echo $total_ecran; ?>)</h3>
-    <div class="uk-overflow-auto uk-margin">
-        <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
-            <thead>
-            <tr>
-                <th>Constructeurs</th>
-                <th>Nombre d'écrans</th>
-                <th>Pourcentage (%)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($stat_ecran_manu as $stat): ?>
-
-                <tr>
-                    <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
-                    <td><?php echo $stat['count']; ?></td>
-                    <td><?php echo $stat['percentage']; ?>%</td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
 </div>
 
+<!-- Stats for Monitors -->
+<div class="uk-container uk-margin-medium-top">
+    <div class="uk-card uk-card-default uk-card-body">
+        <h2 class="sansation uk-text-center"><span>Statistiques du Parc (Écrans)</span></h2>
+        <h3 class="uk-text-left sansation-regular uk-margin-large-top">Statistiques par constructeur (Total : <?php echo $total_ecran; ?>)</h3>
+        <div class="uk-overflow-auto uk-margin">
+            <table class="uk-table uk-table-hover uk-table-divider uk-table-striped">
+                <thead>
+                <tr>
+                    <th>Constructeurs</th>
+                    <th>Nombre d'écrans</th>
+                    <th>Pourcentage (%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($stat_ecran_manu as $stat): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($stat['categorie']); ?></td>
+                        <td><?php echo $stat['count']; ?></td>
+                        <td><?php echo $stat['percentage']; ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php include_once "footer.php"; ?>
 
 </body>
+
 </html>
+

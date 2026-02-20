@@ -2,7 +2,10 @@
 
 session_start();
 $is_tech = isset($_SESSION['role']) && $_SESSION['role'] === 'tech';
-
+if (!$is_tech) {
+    header('Location: index.php');
+    exit();
+}
 $conn = mysqli_connect("localhost", "inkware", "!sae2025!", "INVENTORY");
 
 if (!$conn) {
@@ -17,7 +20,7 @@ $filters_applied = !empty($equipment_type); // L'application d'un filtre commenc
 
 $filter_where = "";
 $serial_filter = isset($_GET['serial']) ? $_GET['serial'] : '';
-$domain_filter = isset($_GET['domain']) ? $_GET['domain'] : '';
+$name_filter = isset($_GET['name']) ? trim($_GET['name']) : '';
 $location_filter = isset($_GET['location']) ? $_GET['location'] : '';
 $attached_to_filter = isset($_GET['attached_to']) ? $_GET['attached_to'] : '';
 
@@ -25,7 +28,10 @@ $result_data = null;
 $table_title = "";
 $table_headers = [];
 
+function isValidMacAddress($mac) {
 
+    return preg_match('/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/', $mac);
+}
 if ($filters_applied) {
 
     $result_manufacturers = null;
@@ -34,13 +40,19 @@ if ($filters_applied) {
         $table_title = "Machines Actives";
         $sql_base = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Active_Devices) AND serial NOT IN (SELECT serial FROM Waiting_Devices)";
 
-        // Construction de la clause WHERE pour les machines actives
-        if (!empty($serial_filter)) $filter_where .= " AND serial LIKE '%" . mysqli_real_escape_string($conn, $serial_filter) . "%'";
-        if (!empty($domain_filter)) $filter_where .= " AND domain LIKE '%" . mysqli_real_escape_string($conn, $domain_filter) . "%'";
-        if (!empty($location_filter)) $filter_where .= " AND location LIKE '%" . mysqli_real_escape_string($conn, $location_filter) . "%'";
+        if (!empty($serial_filter)) {
+            $filter_where .= " AND serial LIKE '%" . mysqli_real_escape_string($conn, $serial_filter) . "%'";
+        }
+
+        if (!empty($name_filter)) {
+            $filter_where .= " AND name LIKE '%" . mysqli_real_escape_string($conn, $name_filter) . "%'";
+        }
+        if (!empty($location_filter)) {
+            $filter_where .= " AND location LIKE '%" . mysqli_real_escape_string($conn, $location_filter) . "%'";
+        }
+
         $sql = $sql_base . $filter_where;
         $result_data = mysqli_query($conn, $sql);
-
         $table_headers = ['Nom', 'Numéro de Série', 'Constructeur', 'Modèle', 'OS', 'Domaine', 'Location'];
 
         if ($is_tech) {
@@ -76,7 +88,7 @@ if ($filters_applied) {
         $filter_where_dev = "";
         $sql_devices_rebut_base = "SELECT * FROM Devices WHERE serial IN (SELECT serial FROM Waiting_Devices)";
         if (!empty($serial_filter)) $filter_where_dev .= " AND serial LIKE '%" . mysqli_real_escape_string($conn, $serial_filter) . "%'";
-        if (!empty($domain_filter)) $filter_where_dev .= " AND domain LIKE '%" . mysqli_real_escape_string($conn, $domain_filter) . "%'";
+        if (!empty($name_filter)) $filter_where_dev .= " AND name LIKE '%" . mysqli_real_escape_string($conn, $name_filter) . "%'";
         if (!empty($location_filter)) $filter_where_dev .= " AND location LIKE '%" . mysqli_real_escape_string($conn, $location_filter) . "%'";
 
         $sql_devices_rebut = $sql_devices_rebut_base . $filter_where_dev;
@@ -104,12 +116,12 @@ $error_message = null;
 <head>
     <script src="Ressources/js/uikit.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
     <title>Inventaire - Espace Technicien</title>
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css"/>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
+    <link rel="stylesheet" href="CSS/uikit.css">
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 </head>
 <body>
 
@@ -164,16 +176,16 @@ $error_message = null;
 
                     <?php if ($equipment_type === 'machines' || ($equipment_type === 'rebut' && $is_tech)): ?>
                         <div>
-                            <label class="uk-form-label" for="domain">Domaine</label>
+                            <label class="uk-form-label" for="name_filter" aria-label="inscription du nom dans le filtre">Nom</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" type="text" name="domain" id="domain" placeholder="Domaine"
-                                       value="<?php echo htmlspecialchars($domain_filter); ?>">
+                                <input class="uk-input" type="text" name="name" id="name_filter" placeholder="Nom"
+                                       value="<?php echo htmlspecialchars($name_filter); ?>">
                             </div>
                         </div>
                         <div>
-                            <label class="uk-form-label" for="location">Location</label>
+                            <label class="uk-form-label" for="location_filter">Location</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" type="text" name="location" id="location" placeholder="Location"
+                                <input class="uk-input" type="text" name="location" id="location_filter" placeholder="Location"
                                        value="<?php echo htmlspecialchars($location_filter); ?>">
                             </div>
                         </div>
@@ -198,7 +210,7 @@ $error_message = null;
             </div>
 
             <div class="uk-margin-top">
-                <button class="uk-button uk-button-primary uk-border-rounded" type="submit">
+                <button class="uk-button uk-button-primary uk-border-rounded" type="submit" style="background: black">
                     Appliquer le Filtre
                 </button>
                 <a href="inventaire.php" class="uk-button uk-button-default uk-border-rounded" style="background: white">
@@ -252,8 +264,8 @@ $error_message = null;
                                 </form>
                               </td>";
                                 }
-
-                                echo "<td>" . isset($row). (isset($row['name']) ? $row['name'] : '') . "</td>";
+    
+                                echo "<td>" . (isset($row['name']) ? $row['name'] : '') . "</td>";
                                 echo "<td>" . (isset($row['serial']) ? $row['serial'] : '') . "</td>";
                                 echo "<td>" . (isset($row['manufacturer']) ? $row['manufacturer'] : '') . "</td>";
                                 echo "<td>" . (isset($row['model']) ? $row['model'] : '') . "</td>";
@@ -283,10 +295,10 @@ $error_message = null;
                 <h3 class="uk-text-left sansation-bold uk-margin-small-top">Gestion des Machines</h3>
                 <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-medium-top">
                     <h4 class="sansation-regular uk-margin-small-bottom">Import CSV :</h4>
-                    <form action="csv_import_machine.php" method="POST" enctype="multipart/form-data"
-                          class="uk-margin-small-bottom">
+                    <form action="csv_import_machine.php"  method="POST" enctype="multipart/form-data"
+                          class="uk-margin-small-bottom" aria-label="Importer un CSV">
                         <div class="uk-flex uk-flex-middle">
-                            <input type="file" name="csv_file_upload" id="csv_file_upload_machine" required>
+                            <input type="file" name="csv_file_upload" aria-label="selectionner un CSV" id="csv_file_upload_machine" required>
                             <input type="hidden" name="target_table" value="Devices">
                             <button type="submit"
                                     class="uk-button uk-button-secondary uk-margin-small-left uk-border-rounded">
@@ -315,10 +327,10 @@ $error_message = null;
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label"
+                                    <label class="uk-form-label "
                                            for="manufacturer_select">Constructeur*</label>
                                     <div class="uk-form-controls">
-                                        <select class="uk-select" id="manufacturer_select"
+                                        <select class="uk-select uk-form-danger" id="manufacturer_select"
                                                 name="manufacturer" required>
 
                                             <option value="">-- Sélectionnez un constructeur --</option>
@@ -340,18 +352,24 @@ $error_message = null;
 
 
                                 <div>
-                                    <label class="uk-form-label" for="macaddr">Adresse MAC*</label>
+                                    <label class="uk-form-label" for="macaddr">Adresse MAC</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input uk-form-danger" type="text" name="macaddr" id="macaddr"
-                                               placeholder="Adresse MAC" maxlength="10" value="" required>
+                                        <input class="uk-input"
+                                               type="text"
+                                               name="macaddr"
+                                               id="macaddr"
+                                               placeholder="AA:BB:CC:DD:EE:FF"
+                                               maxlength="17"
+                                               pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                                               title="Format attendu : XX:XX:XX:XX:XX:XX ou XX-XX-XX-XX-XX-XX (Hexadécimal)">
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label class="uk-form-label uk-form-danger" for="os_select_add">OS*</label>
+                                    <label class="uk-form-label" for="os_select_add">OS</label>
                                     <div class="uk-form-controls">
                                         <select class="uk-select" id="os_select_add"
-                                                name="os" required>
+                                                name="os">
 
                                             <option value="">-- Sélectionnez un OS --</option>
                                             <?php
@@ -475,7 +493,7 @@ $error_message = null;
                             </div>
                             <div class="uk-margin-top">
                                 <input type="hidden" name="target_table" value="Devices">
-                                <button class="uk-button uk-button-primary uk-border-rounded" type="submit">
+                                <button class="uk-button uk-button-primary uk-border-rounded" type="submit" style="background: #76D7C4; color: black">
                                     Ajouter
                                 </button>
                             </div>
@@ -485,12 +503,12 @@ $error_message = null;
 
                 <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-medium-top">
                     <h3 class="uk-card-title sansation-regular">Supprimer une Machine</h3>
-                    <form class="uk-form-stacked" method="POST" action="suppression_machine.php">
+                    <form class="uk-form-stacked" method="POST" action="suppression_machine.php" aria-label="Supprimer une Machine">
                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                             <div>
-                                <label class="uk-form-label">Numéro de Série</label>
                                 <div class="uk-form-controls">
-                                    <label for="serial_devices_delete"></label><input class="uk-input" type="text"
+
+                                    <label class="uk-form-label" for="serial_devices_delete">Numéro de Série</label><input class="uk-input" type="text"
                                                                                name="serial_devices"
                                                                                id="serial_devices_delete"
                                                                                placeholder="SNXXXXXXX">
@@ -498,7 +516,7 @@ $error_message = null;
                             </div>
                         </div>
                         <div class="uk-margin-top">
-                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit">
+                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit" style="background: #8F1E24">
                                 Supprimer
                             </button>
                         </div>
@@ -569,10 +587,10 @@ $error_message = null;
                 <h3 class="uk-text-left sansation-bold uk-margin-small-top">Gestion des Écrans</h3>
                 <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-medium-top">
                     <h4 class="sansation-regular uk-margin-small-bottom">Import CSV :</h4>
-                    <form action="csv_import_ecran.php" method="POST" enctype="multipart/form-data"
+                    <form action="csv_import_ecran.php" method="POST"  aria-label="importer un CSV" enctype="multipart/form-data"
                           class="uk-margin-small-bottom">
                         <div class="uk-flex uk-flex-middle">
-                            <input type="file" name="csv_file_upload" id="csv_file_upload_ecran" required>
+                            <input type="file" name="csv_file_upload" aria-label="selectionner un CSV" id="csv_file_upload_ecran" required>
                             <input type="hidden" name="target_table" value="Monitors">
                             <button type="submit"
                                     class="uk-button uk-button-secondary uk-margin-small-left uk-border-rounded">
@@ -585,10 +603,10 @@ $error_message = null;
                         <form class="uk-form-stacked" action="ajout_ecran_formulaire.php" method="post">
                             <div class="uk-grid-small uk-child-width-1-3@s uk-grid">
                                 <div>
-                                    <label class="uk-form-label" for="serial_monitor">Numéro de
+                                    <label class="uk-form-label" aria-label="numero de serie" for="serial_monitor">Numéro de
                                         Série</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="serial_monitor"
+                                        <input class="uk-input" type="text" aria-label="numero de serie" name="serial_monitor"
                                                id="serial_monitor_add"
                                                placeholder="Numéro de Série">
                                     </div>
@@ -596,7 +614,7 @@ $error_message = null;
 
                                 <div>
                                     <label class="uk-form-label"
-                                           for="manufacturer_select">Constructeur</label>
+                                           for="manufacturer_select" aria-label="constructeur">Constructeur</label>
                                     <div class="uk-form-controls">
 
                                         <select class="uk-select" id="manufacturer_select_monitor_add"
@@ -619,43 +637,43 @@ $error_message = null;
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label" for="model_monitor">Modèle</label>
+                                    <label class="uk-form-label" aria-label="Modèle d'écran" for="model_monitor">Modèle</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="model_monitor" id="model_monitor_add"
+                                        <input class="uk-input" type="text" name="model_monitor" aria-label="Modèle de l'ecran" id="model_monitor_add"
                                                placeholder="Modèle">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label" for="size_inch">Dimensions (pouces)</label>
+                                    <label class="uk-form-label" for="size_inch" aria-label="Dimensions de l'écran">Dimensions (pouces)</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="size_inch" id="size_inch_add"
+                                        <input class="uk-input" type="text" name="size_inch"  aria-label="Dimensions de l'ecran" id="size_inch_add"
                                                placeholder="Dimensions">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label" for="resolution">Résolution</label>
+                                    <label class="uk-form-label" for="resolution" aria-label="résolution de l'ecran">Résolution</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="resolution" id="resolution_add"
+                                        <input class="uk-input" type="text" aria-label="résolution de l'ecran" name="resolution" id="resolution_add"
                                                placeholder="Résolution">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label" for="connection">Connection</label>
+                                    <label class="uk-form-label" for="connection" aria-label="Connexion à l'écran">Connection</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="connection" id="connection_add"
+                                        <input class="uk-input" type="text" aria-label="Connexion à l'écran" name="connection" id="connection_add"
                                                placeholder="Connection">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="uk-form-label" for="attached_to">Machine Associée</label>
+                                    <label class="uk-form-label" for="attached_to_monitor" aria-label="machine associée à l'écran">Machine Associée</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" name="attached_to" id="attached_to_add"
+                                        <input class="uk-input" type="text" aria-label="machine associée à l'écran" name="attached_to" id="attached_to_monitor"
                                                placeholder="Machine Associée">
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                <button class="uk-button uk-button-primary uk-border-rounded" type="submit">
+                                <button class="uk-button uk-button-primary uk-border-rounded" type="submit" style="background: #76D7C4; color: black">
                                     Ajouter
                                 </button>
                             </div>
@@ -668,17 +686,16 @@ $error_message = null;
                     <form class="uk-form-stacked" method="POST" action="suppression_ecran.php">
                         <div class="uk-grid-small uk-child-width-1-2@s uk-grid">
                             <div>
-                                <label class="uk-form-label">Numéro de Série</label>
                                 <div class="uk-form-controls">
-                                    <label for="serial_monitors"></label><input class="uk-input" type="text"
+                                    <label  for="serial_monitors_delete" class="uk-form-label">Numéro de Série</label><input class="uk-input" type="text"
                                                                                 name="serial_monitors"
-                                                                                id="serial_monitors_delete"
+                                                                                id="serial_monitors_delete" aria-label="Inscrption du numéro de série"
                                                                                 placeholder="DMXXXXXXX">
                                 </div>
                             </div>
                         </div>
                         <div class="uk-margin-top">
-                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit">
+                            <button class="uk-button uk-button-danger uk-border-rounded" type="submit" style="background: #8F1E24">
                                 Supprimer
                             </button>
                         </div>
@@ -777,5 +794,7 @@ $error_message = null;
         </div>
     <?php endif; ?>
 </div>
+
+<?php include_once "footer.php"; ?>
 </body>
 </html>

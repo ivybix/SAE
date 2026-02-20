@@ -1,11 +1,13 @@
 <?php
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $is_logged_in = isset($_SESSION['user']);
 
 $is_formulaire_page = strpos($_SERVER['REQUEST_URI'], 'formulaire.php') !== false;
 $is_adminweb_page =($_SESSION['role']) == 'adminweb';
 $is_adminsystem = ($_SESSION['role']) == 'sysadmin';
+$is_tech = ($_SESSION['role']) == 'tech';
 ?>
 <nav class="uk-navbar-container uk-navbar-transparent uk-align-center">
     <div class="uk-container">
@@ -15,7 +17,7 @@ $is_adminsystem = ($_SESSION['role']) == 'sysadmin';
 
                 <ul class="uk-navbar-nav menu">
                     <li>
-                        <a class="uk-navbar-item uk-logo" href="index.php" target="_self" aria-label="Acceuil">
+                        <a class="uk-navbar-item uk-logo" href="/index.php?retour-acceuil" target="_self" aria-label="Acceuil">
                             <img src="Ressources/logo-nav2.ico" alt="Logo InkWare (Acceuil)" style="height: 40px;">
                         </a>
                     </li>
@@ -26,16 +28,18 @@ $is_adminsystem = ($_SESSION['role']) == 'sysadmin';
                             Accueil
                         </a>
                     </li>
+                    <?php if ($is_tech): ?>
                     <li class="menu-item">
                         <a href="inventaire.php">
                             Inventaire
                         </a>
                     </li>
+                    <?php endif;?>
                     <?php if ($is_logged_in): ?>
                     <li class="menu-item uk-active"><a href="stats.php">Statistiques</a></li>
                     <?php endif;?>
                     <?php if ($is_adminweb_page): ?>
-                        <li class="menu-item uk-active"><a href="adminweb.php">Gestion Web</a></li>
+                        <li class="menu-item uk-active"><a href="adminweb.php">Gestion</a></li>
 
                     <?php endif;?>
                     <?php if ($is_adminsystem): ?>

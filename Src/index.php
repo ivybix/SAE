@@ -7,11 +7,11 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="CSS/Style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
-    <link rel="stylesheet" href="CSS/uikit.css"/>
-    <link rel="stylesheet" href="CSS/uikit-rtl.css"/>
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
+    <link rel="stylesheet" href="CSS/uikit.css">
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 
     <title>InkWare</title>
 </head>
@@ -39,8 +39,6 @@ session_start();
 
     </div>
 </div>
+<?php include_once "footer.php"; ?>
 </body>
-<footer>
-
-</footer>
 </html>

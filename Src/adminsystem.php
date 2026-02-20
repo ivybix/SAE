@@ -50,12 +50,13 @@ $logins_result = mysqli_query($conn, "SELECT DISTINCT login FROM {$conn_table} O
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="Ressources/logo.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
     <title>Administration Système - Connexions</title>
-    <link rel="stylesheet" href="CSS/Style.css" />
-    <link rel="stylesheet" href="CSS/uikit.css" />
-    <link rel="stylesheet" href="CSS/uikit-rtl.css" />
+    <link rel="stylesheet" href="CSS/Style.css">
+    <link rel="stylesheet" href="CSS/uikit.css">
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
 </head>
 <body>
 
@@ -66,14 +67,16 @@ $logins_result = mysqli_query($conn, "SELECT DISTINCT login FROM {$conn_table} O
     <p class="uk-text-center uk-text-meta">Espace réservé à l'Administrateur Système (sysadmin)</p>
 
     <div class="uk-card uk-card-default uk-card-body uk-margin-bottom">
-        <h3 class="sansation-regular">Filtres</h3>
+        <h2 class="sansation-regular">Filtres</h2>
         <form class="uk-grid-small" uk-grid method="GET">
             <div class="uk-width-1-4@s">
-                <input class="uk-input" type="date" name="filter_date" placeholder="Date"
+                <label for="filter_date" class="uk-form-label">Date</label>
+                <input class="uk-input" id="filter_date" type="date" name="filter_date" placeholder="Date"
                        value="<?php echo htmlspecialchars($filter_date); ?>">
             </div>
             <div class="uk-width-1-4@s">
-                <select class="uk-select" name="filter_login">
+                <label for="filter_login" class="uk-form-label">Utilisateur</label>
+                <select class="uk-select" id="filter_login" name="filter_login">
                     <option value="all">Tous les utilisateurs</option>
                     <?php
                     if ($logins_result) {
@@ -134,5 +137,8 @@ $logins_result = mysqli_query($conn, "SELECT DISTINCT login FROM {$conn_table} O
 </div>
 <script src="js/uikit.min.js"></script>
 <script src="js/uikit-icons.min.js"></script>
+
+<?php include_once "footer.php"; ?>
 </body>
+
 </html>

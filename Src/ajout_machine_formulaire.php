@@ -30,7 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $macaddr = $_POST['macaddr'];
     $purchase_date = $_POST['purchase_date'];
     $warranty_end = $_POST['warranty_end'];
+    $mac = $_POST['macaddr'];
 
+    if (!empty($mac) && !preg_match('/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/', $mac)) {
+        header('Location: inventaire.php?equipment_type=machines&error=Format d\'adresse MAC invalide (format: XX:XX:XX:XX:XX:XX ou XX-XX-XX-XX-XX-XX), adresse indiquée : '.$mac);
+        exit();
+    }
 
     $check_sql = "SELECT serial FROM Devices WHERE serial = ?";
     $check_stmt = $conn->prepare($check_sql);
@@ -59,29 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $check_stmt->close();
 
-    $check_sql = "SELECT macaddr FROM Devices WHERE macaddr = ?";
-    $check_stmt = $conn->prepare($check_sql);
-
-    if ($check_stmt === false) {
-        $message_echec = "Erreur de préparation de la vérification : " . $conn->error;
-        mysqli_close($conn);
-
-        header("location: inventaire.php?equipment_type=machines&error=" . urlencode($message_echec));
-    }
-
-    $check_stmt->bind_param("s",$macaddr);
-    $check_stmt->execute();
-    $check_stmt->store_result();
-
-    if ($check_stmt->num_rows > 0) {
-        $message_echec = "Erreur : Cette addresse mac existe déjà. Veuillez en choisir un autre.";
-        $check_stmt->close();
-        mysqli_close($conn);
-
-        header("location: inventaire.php?equipment_type=machines&error=" . urlencode($message_echec));
-    }
-
-    $check_stmt->close();
 
 
     $sql = "INSERT INTO Devices(name,serial,manufacturer,model,type,cpu,ram_mb,disk_gb,os,domain,location,building,room,macaddr,purchase_date,warranty_end) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

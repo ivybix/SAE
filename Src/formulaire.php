@@ -9,12 +9,12 @@ if (isset($_GET['error'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav2.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="Ressources/logo-nav.ico">
 
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/uikit.css" />
-    <link rel="stylesheet" href="CSS/uikit-rtl.css" />
+    <link rel="stylesheet" href="CSS/uikit.css">
+    <link rel="stylesheet" href="CSS/uikit-rtl.css">
     <script src="Ressources/js/uikit.js"></script>
 
     <title>Connexion InkWare</title>
@@ -61,6 +61,9 @@ if (isset($_GET['error'])) {
 </div>
 
 
+<?php include_once "footer.php"; ?>
+
 
 </body>
+
 </html>
